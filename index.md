@@ -561,5 +561,3 @@
 # पुस्तकें
 
 * [योगी कथामृत](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/QhgOeKxZRvzEpCvDjqoiHDuR)
-
-<video>  <source src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" type="video/mp4"></video>

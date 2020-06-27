@@ -1,4 +1,4 @@
-# [Bots](https://namasteybharat.github.io/bots.html)
+# [Bots](https://namasteybharat.github.io/Bots)
 
 * Telegram Bots
 

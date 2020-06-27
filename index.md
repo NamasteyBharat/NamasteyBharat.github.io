@@ -3,7 +3,7 @@
 
 ७ दिवसीय विपश्यना बाल शिविर
 
-* [७ दिवसीय विपश्यना बाल शिविर_०१_१०३०](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/rCbAkGuFrnGvZbJECevvfnZh)
+` * [७ दिवसीय विपश्यना बाल शिविर_०१_१०३०](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/rCbAkGuFrnGvZbJECevvfnZh)
 
 * [७ दिवसीय विपश्यना बाल शिविर_०२_१९४५](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/cypPXWJOTpLyVTPHRvYXFasp)
 
@@ -27,7 +27,7 @@
 
 * [७ दिवसीय विपश्यना बाल शिविर_१२_१९४५](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/iFmBzHDjkdvZuoJbKNtftbqP)
 
-* [७ दिवसीय विपश्यना बाल शिविर_१३_१९४५](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/chkPSGCJMXfQXfyITxaxVHOg)
+* [७ दिवसीय विपश्यना बाल शिविर_१३_१९४५](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/chkPSGCJMXfQXfyITxaxVHOg) `
 
 
 

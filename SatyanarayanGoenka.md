@@ -1,1 +1,178 @@
 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>सत्यनारायण गोयन्का</title>
+    <meta content="width=device-width, initial-scale=0.6" name="viewport">
+    <style>
+        body { color: #666; font-family: sans-serif; line-height: 1.4; }
+        h1 { color: #444; font-size: 1.2em; padding: 14px 2px 12px; margin: 0px; }
+        h1 em { font-style: normal; color: #999; }
+        a { color: #888; text-decoration: none; }
+        #wrapper { width: 400px; margin: 40px auto; }
+
+        ol { padding: 0px; margin: 0px; list-style: decimal-leading-zero inside; color: #ccc; width: 460px; border-top: 1px solid #ccc; font-size: 0.9em; }
+        ol li { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
+        ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
+        li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); }
+        li.playing a { color: #000; }
+        li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
+
+        #shortcuts { position: fixed; bottom: 0px; width: 100%; color: #666; font-size: 0.9em; margin: 60px 0px 0px; padding: 20px 20px 15px; background: #f3f3f3; background: rgba(240, 240, 240, 0.7); }
+        #shortcuts div { width: 460px; margin: 0px auto; }
+        #shortcuts h1 { margin: 0px 0px 6px; }
+        #shortcuts p { margin: 0px 0px 18px; }
+        #shortcuts em { font-style: normal; background: #d3d3d3; padding: 3px 9px; position: relative; left: -3px;
+            -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px;
+            -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
+
+        @media screen and (max-device-width: 480px) {
+            #wrapper { position: relative; left: -3%; }
+            #shortcuts { display: none; }
+        }
+
+        .credit {
+            text-align: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../audiojs/audio.js"></script>
+    <script>
+        $(function() {
+            // Setup the player to autoplay the next track
+            var a = audiojs.createAll({
+                trackEnded: function() {
+                    var next = $('ol li.playing').next();
+                    if (!next.length) next = $('ol li').first();
+                    next.addClass('playing').siblings().removeClass('playing');
+                    audio.load($('a', next).attr('data-src'));
+                    audio.play();
+                }
+            });
+
+            // Load in the first track
+            var audio = a[0];
+            first = $('ol a').attr('data-src');
+            $('ol li').first().addClass('playing');
+            audio.load(first);
+
+            // Load in a track on click
+            $('ol li').click(function(e) {
+                e.preventDefault();
+                $(this).addClass('playing').siblings().removeClass('playing');
+                audio.load($('a', this).attr('data-src'));
+                audio.play();
+            });
+            // Keyboard shortcuts
+            $(document).keydown(function(e) {
+                var unicode = e.charCode ? e.charCode : e.keyCode;
+                // right arrow
+                if (unicode == 39) {
+                    var next = $('li.playing').next();
+                    if (!next.length) next = $('ol li').first();
+                    next.click();
+                    // back arrow
+                } else if (unicode == 37) {
+                    var prev = $('li.playing').prev();
+                    if (!prev.length) prev = $('ol li').last();
+                    prev.click();
+                    // spacebar
+                } else if (unicode == 32) {
+                    audio.playPause();
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <h1 class="credit"><a href="https://t.me/SNGoenka_NamasteyBharat">सत्यनारायण गोयन्का</a></h1>
+    <audio preload></audio>
+    <p><a href="https://t.me/SNGoenka_NamasteyBharat/5">७ दिवसीय विपश्यना बाल शिविर</a></p>
+    <ol>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/rCbAkGuFrnGvZbJECevvfnZh">७ दिवसीय विपश्यना बाल शिविर_०१_१०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/cypPXWJOTpLyVTPHRvYXFasp">७ दिवसीय विपश्यना बाल शिविर_०२_१९४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/TiSUaNYQPtlfNgMbaZVUPdJi">७ दिवसीय विपश्यना बाल शिविर_०३_१०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/pZPCzVUvKQJCRoTzMeMeKgbj">७ दिवसीय विपश्यना बाल शिविर_०४_१९४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/AoYCZRjONJVAzWsIshBIblSK">७ दिवसीय विपश्यना बाल शिविर_०५_१०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ryeNYeldkPRbaPQWwkQbrvQp">७ दिवसीय विपश्यना बाल शिविर_०६_१९४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/xryWrluBjSgKuDpTqZaoWOTL">७ दिवसीय विपश्यना बाल शिविर_०७_१०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/TUboXtGxGtgRnOjMXJwrMSEX">७ दिवसीय विपश्यना बाल शिविर_०८_१९४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/cuYAlWwhPGovyXhlwFkbRVPB">७ दिवसीय विपश्यना बाल शिविर_०९_१०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/TgBGkHDjJqXABttvJUpAMDfV">७ दिवसीय विपश्यना बाल शिविर_१०_१९४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uqOuTPPNBAVzZlWKsRlgHLKT">७ दिवसीय विपश्यना बाल शिविर_११_१०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/iFmBzHDjkdvZuoJbKNtftbqP">७ दिवसीय विपश्यना बाल शिविर_१२_१९४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/chkPSGCJMXfQXfyITxaxVHOg">७ दिवसीय विपश्यना बाल शिविर_१३_१९४५</a></li>
+    </ol>
+    <h2>
+        .
+        .
+    </h2>
+    <p><a href="https://t.me/SNGoenka_NamasteyBharat/18">दोहा</a></p>
+    <ol>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/wXvzelwtWNPOYfgiGgsphWkh">दोहा_०१_०६३०_हिन्दी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/nczhrKxihSNVUMjLQEniRyzm">दोहा_०२_०६३०_हिन्दी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/VoOEXRAYNTWIEzGgCmmggneg">दोहा_०३_०६३०_राजस्थानी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/pMPYsXqJADisjRosBljsIFtk">दोहा_०४_०६३०_राजस्थानी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/KDwOghqpmBzHuxARaYpxSSru">दोहा_०५_०६३०_राजस्थानी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/VzgTHnwXCIZjzCHKauzwmRSr">दोहा_०६_०६३०_राजस्थानी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/bIvjgmcJrrRccrBNvDbdViOn">दोहा_०७_०६३०_राजस्थानी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FnovsWInhWrThGjPtDSTBaut">दोहा_०८_०६३०_राजस्थानी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/SkvhFCAJOIDXVqJTdnhxsJOl">दोहा_०९_०६३०_हिन्दी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JztYrPxPCYcEiBYKpsIPcqyG">दोहा_१०_०६३०_हिन्दी</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/UXCCGkzDKttoXpOIkYDGQdHC">दोहा_११_०६३०_हिन्दी</a></li>
+    </ol>
+    <h2>
+        .
+        .
+    </h2>
+    <p><a href="https://t.me/SNGoenka_NamasteyBharat/28">१० दिवसीय विपश्यना शिविर</a></p>
+    <ol>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/NjdJzFFeTqegRWYwhEutZZnN">१० दिवसीय विपश्यना शिविर_०१_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/lmMJVCfltsGeLtewUMxdZbZS">१० दिवसीय विपश्यना शिविर_०२_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/afgQkyciOVPayqWhGFEPaQEL">१० दिवसीय विपश्यना शिविर_०३_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/BRTaWBcbgcNPFrhebtvEkWdx">१० दिवसीय विपश्यना शिविर_०४_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/VSIUuOWccvODwMByBgQERQhn">१० दिवसीय विपश्यना शिविर_०५_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/RCnhnkbMkAHDOjqopRUiuKCx">१० दिवसीय विपश्यना शिविर_०६_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/bkvvoQIpmsXUiHywWedrfUGw">१० दिवसीय विपश्यना शिविर_०७_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uQrJyaJNByXoYnbYbqDwXSDp">१० दिवसीय विपश्यना शिविर_०८_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/oFglyaMsMaIvstSJGbZZfkfQ">१० दिवसीय विपश्यना शिविर_०९_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/CnPCBZfrafNtYTrxPklDwPLE">१० दिवसीय विपश्यना शिविर_१०_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/iuCODItBzUVcFHcNpcbVrbbG">१० दिवसीय विपश्यना शिविर_११_२०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/tgTftVvSqdcybpCtuxAhnMCg">१० दिवसीय विपश्यना शिविर_१२_०५००</a></li>
+    </ol>
+    <h2>
+        .
+        .
+    </h2>
+    <p><a href="https://t.me/SNGoenka_NamasteyBharat/41">८ दिवसीय सतिपट्ठान शिविर</a></p>
+    <ol>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/jMriCLeBsabMBqoxePbJaOLG">८ दिवसीय सतिपट्ठान शिविर_०१_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/HNkOjvSMqssrtiOoHQqYWiel">८ दिवसीय सतिपट्ठान शिविर_०२_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/hByIUxjwxSmeYetPqpZmwLFx">८ दिवसीय सतिपट्ठान शिविर_०३_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/TMihWDrJzZZAdLveusiqswPg">८ दिवसीय सतिपट्ठान शिविर_०४_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FEzvmAYYeoKMaORhlCXpqfSc">८ दिवसीय सतिपट्ठान शिविर_०५_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/LOwogYInOXlzQEtnTLJLrylp">८ दिवसीय सतिपट्ठान शिविर_०६_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/XaAAIlBLbvznPZqVVKoSijKK">८ दिवसीय सतिपट्ठान शिविर_०७_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/btzQHJSlEsFjiNIQPbQkPaqp">८ दिवसीय सतिपट्ठान शिविर_०८_१९१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/OFqPnyFbLlqRyyuiPjThxkGt">८ दिवसीय सतिपट्ठान शिविर_०९_०५३५</a></li>
+    </ol>
+    <h2>
+        .
+        .
+    </h2>
+    </div>
+<div id="shortcuts">
+    <div>
+        <h1>Keyboard shortcuts:</h1>
+        <p><em>&rarr;</em> Next track</p>
+        <p><em>&larr;</em> Previous track</p>
+        <p><em>Space</em> Play/pause</p>
+    </div>
+</div>
+
+<p class="credit"><a href="https://NamasteyBharat.github.io">नमस्ते भारत</a></p>
+</body>
+</html>

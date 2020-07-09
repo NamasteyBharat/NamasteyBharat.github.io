@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>राजीव दीक्षित</title>
+    <meta content="width=device-width, initial-scale=0.6" name="viewport">
+    <style>
+        body { color: #666; font-family: sans-serif; line-height: 1.4; }
+        h1 { color: #444; font-size: 1.2em; padding: 14px 2px 12px; margin: 0px; }
+        h1 em { font-style: normal; color: #999; }
+        a { color: #888; text-decoration: none; }
+        #wrapper { width: 400px; margin: 40px auto; }
+
+        ol { padding: 0px; margin: 0px; list-style: decimal-leading-zero inside; color: #ccc; width: 460px; border-top: 1px solid #ccc; font-size: 0.9em; }
+        ol li { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
+        ol li a { display: block; text-indent: -3.3ex; padding: 0px 0px 0px 20px; }
+        li.playing { color: #aaa; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.3); }
+        li.playing a { color: #000; }
+        li.playing:before { content: '♬'; width: 14px; height: 14px; padding: 3px; line-height: 14px; margin: 0px; position: absolute; left: -24px; top: 9px; color: #000; font-size: 13px; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2); }
+
+        #shortcuts { position: fixed; bottom: 0px; width: 100%; color: #666; font-size: 0.9em; margin: 60px 0px 0px; padding: 20px 20px 15px; background: #f3f3f3; background: rgba(240, 240, 240, 0.7); }
+        #shortcuts div { width: 460px; margin: 0px auto; }
+        #shortcuts h1 { margin: 0px 0px 6px; }
+        #shortcuts p { margin: 0px 0px 18px; }
+        #shortcuts em { font-style: normal; background: #d3d3d3; padding: 3px 9px; position: relative; left: -3px;
+            -webkit-border-radius: 4px; -moz-border-radius: 4px; -o-border-radius: 4px; border-radius: 4px;
+            -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); -o-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); }
+
+        @media screen and (max-device-width: 480px) {
+            #wrapper { position: relative; left: -3%; }
+            #shortcuts { display: none; }
+        }
+
+        .credit {
+            text-align: center;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../audiojs/audio.js"></script>
+    <script>
+        $(function() {
+            // Setup the player to autoplay the next track
+            var a = audiojs.createAll({
+                trackEnded: function() {
+                    var next = $('ol li.playing').next();
+                    if (!next.length) next = $('ol li').first();
+                    next.addClass('playing').siblings().removeClass('playing');
+                    audio.load($('a', next).attr('data-src'));
+                    audio.play();
+                }
+            });
+
+            // Load in the first track
+            var audio = a[0];
+            first = $('ol a').attr('data-src');
+            $('ol li').first().addClass('playing');
+            audio.load(first);
+
+            // Load in a track on click
+            $('ol li').click(function(e) {
+                e.preventDefault();
+                $(this).addClass('playing').siblings().removeClass('playing');
+                audio.load($('a', this).attr('data-src'));
+                audio.play();
+            });
+            // Keyboard shortcuts
+            $(document).keydown(function(e) {
+                var unicode = e.charCode ? e.charCode : e.keyCode;
+                // right arrow
+                if (unicode == 39) {
+                    var next = $('li.playing').next();
+                    if (!next.length) next = $('ol li').first();
+                    next.click();
+                    // back arrow
+                } else if (unicode == 37) {
+                    var prev = $('li.playing').prev();
+                    if (!prev.length) prev = $('ol li').last();
+                    prev.click();
+                    // spacebar
+                } else if (unicode == 32) {
+                    audio.playPause();
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+<div id="wrapper">
+    <h1 class="credit"><a href="https://t.me/RajivDixit_NamasteyBharat">राजीव दीक्षित</a></h1>
+    <audio preload></audio>
+    <ol>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/AwYJGUxIKzHIUCmLuUCQcoeG">राजीव दीक्षित_००१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/mBmypXNyFBUPyZGNBkMBClTr">राजीव दीक्षित_००२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/eELoucJoJoaegWcXsPCujCvN">राजीव दीक्षित_००३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FEOAeyJDJCVyDQYDAiithUSK">राजीव दीक्षित_००४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ZpRDqCFbKdWFwSbRYJdCnHZS">राजीव दीक्षित_००५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/pNhtwawgUpfgGBRvdPfgwnpK">राजीव दीक्षित_००६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/PVVEuukOeAFlZSfcEDrEIvhG">राजीव दीक्षित_००७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/PVVEuukOeAFlZSfcEDrEIvhG">राजीव दीक्षित_००८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uqHKQXMnQrCEOBfBDaEktUmH">राजीव दीक्षित_००९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uqHKQXMnQrCEOBfBDaEktUmH">राजीव दीक्षित_०१०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/hZISzrVrpOEheDJOgwxOxtIl">राजीव दीक्षित_०११</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/DzwXygXcKBPOvPDfkQkfYBhX">राजीव दीक्षित_०१२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uzpRiodGiksbxnSALUedZBTR">राजीव दीक्षित_०१३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/XPYDVKMCfAAOXnNlXScbTMjQ">राजीव दीक्षित_०१४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/UqSqoHpstSNSDSAlMsiHNLvC">राजीव दीक्षित_०१५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/AVWUgZhnRVJdgCzIiAvpGxAf">राजीव दीक्षित_०१६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/mbDFgoWKhomKtYGOzhubwpRN">राजीव दीक्षित_०१७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/GQNMOVpWgpJfRkyraHcBbdmr">राजीव दीक्षित_०१८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/LsuLaMCupEMpUBtyMsNyuNUn">राजीव दीक्षित_०१९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ZDhuJjPtdyUWKLrUNQaIgTOn">राजीव दीक्षित_०२०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/aUSSHDgATfamslBfnuEkYpKz">राजीव दीक्षित_०२१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/IbOMpOWPnDDSbEhrXXXwqSes">राजीव दीक्षित_०२२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FjSALKAAMMDlZGaZaaQvfNex">राजीव दीक्षित_०२३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/QZZUFTjGXBfVGuqOSjlSvUis">राजीव दीक्षित_०२४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ootCxhXPYAzelWynkEQylTFK">राजीव दीक्षित_०२५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/zTgncxwOmRluufoZmNLxyedw">राजीव दीक्षित_०२६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/yksXbyqYrlmHikVdzdNRDicr">राजीव दीक्षित_०२७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/MDTooyzfKhjTRbLsRYEsyDsA">राजीव दीक्षित_०२८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/XqfTyyuctygXDbcWYCMwKHsT">राजीव दीक्षित_०२९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/gEOrArCHMZeAqrLGfddHzNtq">राजीव दीक्षित_०३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/RLtanbeXvnYRenbWXnZjVZSv">राजीव दीक्षित_०३१_२</a></li>
+        <li><a href="#"data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/SHQOlkQZzvlrRigkmGQCEVLe">राजीव दीक्षित_०३१_२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/WHEoNATDfeDXORsbCGoxPsts">राजीव दीक्षित_०३२_१</a></li>
+        <li><a href="#"data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/GtTqlakVyMEzeGIHLMmOYFHh">राजीव दीक्षित_०३२_२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JsBeWdJtYzzNpXzYxzbSgpGs">राजीव दीक्षित_०३३_१</a></li>
+        <li><a href="#"data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/RlLASzbrXKizpLIAcvVtRpYL">राजीव दीक्षित_०३३_२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FBuQgvJIOHwdYrjNIJVPMUxn">राजीव दीक्षित_०३४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/wvJWdwxiToYjStJMkNaITbnT">राजीव दीक्षित_०३५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/iSGXFyCtnVJWcXOFOJpSLQpg">राजीव दीक्षित_०३६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/zcQGrNQqIKVcBYHaxpPbrYdO">राजीव दीक्षित_०३७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/HlcppazZCRQAOxQfWaRHjKUN">राजीव दीक्षित_०३८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/bApSaonLdPOHTbxNaXbHGsRQ">राजीव दीक्षित_०३९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/oiaELUOzrdlmhFrcwRzLOdIj">राजीव दीक्षित_०४०_१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/cNGRHPkEYkccpEauSXkIxsLZ">राजीव दीक्षित_०४०_२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/UaXOLyJrHJczEYqdXeEUvkhd">राजीव दीक्षित_०४१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/jkgLhJjNqvzvEgLUjtTFwmOy">राजीव दीक्षित_०४२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/oYGDgZGJobKVpPSmfEFGRQxc">राजीव दीक्षित_०४३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/nsZqMPwnHjIXrAvdhpIqlxxK">राजीव दीक्षित_०४४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/tkeAfFvLceoRPcTrbiAqKVuB">राजीव दीक्षित_०४५_१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/yCxeDOMmikmuIbVNOAOmwLUO">राजीव दीक्षित_०४५_२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/eSQwBKhaeKTjlQfUMwIDgWhb">राजीव दीक्षित_०४६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/irBYTRWxZQlljHdYiChGZNaP">राजीव दीक्षित_०४७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/dRhWSSUVbuJUyVbxIiyTkWfQ">राजीव दीक्षित_०४८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/eeDCBKrSKMkRjZufEQSKwngi">राजीव दीक्षित_०४९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/SWgnjvQvJutfQhKXvDTxwbwf">राजीव दीक्षित_०५०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/VAaOBZihCxPuYVEIUlgwDvrr">राजीव दीक्षित_०५१_१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/MGbRpbRJWDyBMxmIQUcdDEpL">राजीव दीक्षित_०५१_२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/WQApiOUESniSXPSoKWyDYnpw">राजीव दीक्षित_०५२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/CdcBUaomGoPuOYTBgGPMhqBk">राजीव दीक्षित_०५३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/GWLzLMPpyGdYigIhYWPDaOse">राजीव दीक्षित_०५४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/yftfKhuYcetICRzAcQhQEOzm">राजीव दीक्षित_०५५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/hUOyjySkdGMFNbfxEXWmdmXK">राजीव दीक्षित_०५६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/RccOCoVeySyjFkkbhgjauNPS">राजीव दीक्षित_०५७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/kgEbXzMABhMIJbkdoSEZbalF">राजीव दीक्षित_०५८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/mCJUwUfeBPUqMOOaNlXgtOVR">राजीव दीक्षित_०५९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/TvzsAXFIPMmxdIWXVvzAjoYv">राजीव दीक्षित_०६०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/oLarsboiZXGjPmyxNGxjyzai">राजीव दीक्षित_०६१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/QTgXpJotnefiAaTKFqVgGCtw">राजीव दीक्षित_०६२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/MJXOkrKsjSRngYhhQtfERzeZ">राजीव दीक्षित_०६३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/qVXKYqnTUUSAhevflzmCThVd">राजीव दीक्षित_०६४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uFmBoFQMhsMBThDbZJIAIbhw">राजीव दीक्षित_०६५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/fbXJlYUKsjNBOnGwsESvSvSj">राजीव दीक्षित_०६६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JSlxTQhbNWaWArRrpXjjwEvl">राजीव दीक्षित_०६७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/CVcqETYveBVBithMsKgVckrG">राजीव दीक्षित_०६८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/eDnRPoBiyOTlEZvkMLJiztFz">राजीव दीक्षित_०६९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/xVuNBBEZovGVNiSyieeGygXX">राजीव दीक्षित_०७०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/gFCrvDkWQEtwjKRTXSopypEP">राजीव दीक्षित_०७१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/joskvyEyYPHSkGxytRMlWTdw">राजीव दीक्षित_०७२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/tPyyRpjfazeUIIRiwewMwCOi">राजीव दीक्षित_०७३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/EieBMiPSckrGciTuDSkNOTpJ">राजीव दीक्षित_०७४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/SnnCEorMTnIrfbDhBNNvxfmq">राजीव दीक्षित_०७५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FyEfKIWOJdgXEhirtZBGwKeM">राजीव दीक्षित_०७६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/YaEMPUFThiPMZLJJBweNibsU">राजीव दीक्षित_०७७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uMMPExpbVWixDyqcOfvkBWkP">राजीव दीक्षित_०७८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/kRuKVbDXUszfUffjxAGGuZXR">राजीव दीक्षित_०७९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/IuJtGyLgZjeVcPJyTSyVqhSh">राजीव दीक्षित_०८०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/yHNURTpovQyaVINVLCGqDRHe">राजीव दीक्षित_०८१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/OCZgNuBucgDRuVAfFZwETcLM">राजीव दीक्षित_०८२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/wupBBjmLYauCRwEeaHwJhfJj">राजीव दीक्षित_०८३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JOCZxYNtugrCTpWiDfdMMjSH">राजीव दीक्षित_०८४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/sNhTEgfJTSxArZTkmATvvWVU">राजीव दीक्षित_०८५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/KCXhlWJdcCgmfVTwusRJFbLn">राजीव दीक्षित_०८६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FyZeYwIOlFqhznbywytlWsUt">राजीव दीक्षित_०८७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/kJAQpIWstEbBDBoyGXjeChlz">राजीव दीक्षित_०८८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/gxtSBjKuzbQCJllCxBLeqQAY">राजीव दीक्षित_०८९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/jTzqUWoBMZUbuiNmuSdmGZhR">राजीव दीक्षित_०९०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JcdRNzfJYGFxIyysKowssbHE">राजीव दीक्षित_०९१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/uqseVRSImyrGkDTrYJGmNxCO">राजीव दीक्षित_०९२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/gXAEZahKFqOeiaggSOqtyuFk">राजीव दीक्षित_०९३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/vjSfKikAyoSIiTjPpqxnKpGN">राजीव दीक्षित_०९४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ONtcduhpCuSAkLOKqkKWRviB">राजीव दीक्षित_०९५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ZWSaLmUJxnzRxqvTqDucZSJw">राजीव दीक्षित_०९६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FbAZSxwwxMwMVqxXTZUNduOQ">राजीव दीक्षित_०९७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/rCuTEgzmyiVUvOfDkxNcqUSo">राजीव दीक्षित_०९८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/qXbfPuMwOJNmCrsgYYgufQwS">राजीव दीक्षित_०९९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/IyWyOaBmQpAjllUvaXPtdKLp">राजीव दीक्षित_१००</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/vRUdflJTNsudUwzgTYDzoIAP">राजीव दीक्षित_१०१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/wHRwzIEgLImKQauAMAgUcqeh">राजीव दीक्षित_१०२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/XFiUZcyMZtSIxhotoExydSWa">राजीव दीक्षित_१०३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/PEvjPLVvksCwEDCKhqTGgivw">राजीव दीक्षित_१०४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/xmMaxzuYKRkxmSwaZnjjMaLi">राजीव दीक्षित_१०५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/XwtRGPrcDqrQbrkdBKzJOetW">राजीव दीक्षित_१०६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/KGCbrDWkEXtvgnYuQDIYjeRX">राजीव दीक्षित_१०७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/UywoxAObmoxOdwcWDYcvsxpr">राजीव दीक्षित_१०८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/bgCQiAArsPGPkqXrjjVsjyrA">राजीव दीक्षित_१०९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ZcvvdlvLvUpUvSIzjsIKfXwa">राजीव दीक्षित_११०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/pwruPlniSchtXJxhiHXwiidc">राजीव दीक्षित_१११</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/yKaJWVcSgXTXMKqXPIumKGiw">राजीव दीक्षित_११२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/jkhwNjysNKdUzQgPUejFqFgG">राजीव दीक्षित_११३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/abQmRYBirzbSngLEVViLNZUs">राजीव दीक्षित_११४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/cYtwvcGVGPYqsMTyLWCqqQMH">राजीव दीक्षित_११५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/vQXBOKMkZUfyacVZgtGvrzpf">राजीव दीक्षित_११६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/SgHtOKJGNbDEHLmlEcIdwhHU">राजीव दीक्षित_११७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/EMADrYmpSzvPLsKrxBmvIWzd">राजीव दीक्षित_११८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/OacVIEcichMtpNzXhJQsoGce">राजीव दीक्षित_११९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/QwVGSaMvzXNzpnVpVfKXSMKS">राजीव दीक्षित_१२०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/FWXHCrKKnvIafWOLAIbypQaS">राजीव दीक्षित_१२१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/fkJAhmVLBaIljBTyJnoleUdD">राजीव दीक्षित_१२२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/xlNlVrEGBAtBghkodbHRApYa">राजीव दीक्षित_१२३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/mRkBDoJWimlMBkyaACDbibkB">राजीव दीक्षित_१२४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/idTsRgkHXPsMnESXJfTwbAcM">राजीव दीक्षित_१२५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/HOBPPBMblggLuOJAEvXIwwBt">राजीव दीक्षित_१२६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/IYogGIVwIthKrtKWKTDHOWQQ">राजीव दीक्षित_१२७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ZrZXCxvsMNBaGzPHEkaKqnhT">राजीव दीक्षित_१२८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/kSztVJcYafeeLlCQykqDJvqP">राजीव दीक्षित_१२९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/mfcshFulLzemmrvDlQJnKnVJ">राजीव दीक्षित_१३०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/pDddaEYXwAiewkpvPFWeVLJC">राजीव दीक्षित_१३१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JGdaTcUDZwmgAChRpcyayKgn">राजीव दीक्षित_१३२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/HpBbwNpFFuHTZBBMcdCOMMCm">राजीव दीक्षित_१३३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/bQDdGwOTSPZfnLcZtNwfsHuW">राजीव दीक्षित_१३४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/QPxFOwyWYwKfXYJPYxpqFfBA">राजीव दीक्षित_१३५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/tpHNNyjhIgyDrnMSdSrOSyMq">राजीव दीक्षित_१३६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/KuJfRlZVAWFcImmkRRDKKYEV">राजीव दीक्षित_१३७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/RTLQRpkSwbMdSCArpAsvFPkx">राजीव दीक्षित_१३८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/JKmPclSwleAbrpePYaMJoCBp">राजीव दीक्षित_१३९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/ZVFaIwdtwQxpnNmZqIMGExkD">राजीव दीक्षित_१४०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/PrJDSLEewgcGBKOYqYyaZYNJ">राजीव दीक्षित_१४१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/OXmOZOXvxRlKcTUSXeSKfUaT">राजीव दीक्षित_१४२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/NSeBxEhViAPBPTOvHElJgDbH">राजीव दीक्षित_१४३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/LgyTNmFzLZTeNnJazXlEJGcn">राजीव दीक्षित_१४४</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/fWJMqyCgcBcHwjEzdQCLBmYc">राजीव दीक्षित_१४५</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/SyQhgafHHFDNtSzBtBdTNSWM">राजीव दीक्षित_१४६</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/nVEhktWWMLuaFwEkHKbajCaP">राजीव दीक्षित_१४७</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/fRABIfOAzucsElecGPzWEltw">राजीव दीक्षित_१४८</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/zXLhzaxZGLsLebXoMVDmfagp">राजीव दीक्षित_१४९</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/bYJqjzhoDrjVGkjFhkQbrNym">राजीव दीक्षित_१५०</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/gTDBHkRIxayHGNKbVIIVumrC">राजीव दीक्षित_१५१</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/WJrhBoWBWPucpPoceCXnbkys">राजीव दीक्षित_१५२</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/HSTLcMAwDxpbgkSAVNXuhEyK">राजीव दीक्षित_१५३</a></li>
+        <li><a href="#" data-src="https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/OwyzbFwmsiegBAoxJmwxCaS">राजीव दीक्षित_१५४</a></li>
+    </ol>
+    </div>
+<div id="shortcuts">
+    <div>
+        <h1>Keyboard shortcuts:</h1>
+        <p><em>&rarr;</em> Next track</p>
+        <p><em>&larr;</em> Previous track</p>
+        <p><em>Space</em> Play/pause</p>
+    </div>
+</div>
+
+<p class="credit"><a href="https://NamasteyBharat.github.io">नमस्ते भारत</a></p>
+</body>
+</html>

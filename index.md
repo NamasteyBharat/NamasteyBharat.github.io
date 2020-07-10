@@ -1,4 +1,4 @@
-# सत्यनारायण गोयन्का
+# [सत्यनारायण गोयन्का](https://NamasteyBharat.github.io/SNGoenka)
 
 
 ७ दिवसीय विपश्यना बाल शिविर
@@ -105,7 +105,7 @@
 
 
 
-# राजीव दीक्षित
+# [राजीव दीक्षित](https://NamasteyBharat.github.io/RajivDixit)
 
 * [राजीव दीक्षित_००१](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/AwYJGUxIKzHIUCmLuUCQcoeG)
 

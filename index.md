@@ -556,8 +556,3 @@
 * [नरेन्द्र मोदी_मन की बात_०६२_२३फरवरी२०२०](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/eKKHdvqWPupcidPKFtapcodT)
 
 * [नरेन्द्र मोदी_मन की बात_०६३_२९मार्च२०२०](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/yzhTnfVANmBKSmAtjMEjmjEz)
-
-
-# पुस्तकें
-
-* [योगी कथामृत](https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/QhgOeKxZRvzEpCvDjqoiHDuR)

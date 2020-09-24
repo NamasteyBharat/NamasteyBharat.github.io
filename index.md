@@ -1,6 +1,4 @@
 [![NamasteyBharat.github.io](https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle.png)](https://NamasteyBharat.github.io)
-
-
 Archives
 
 ## सत्यनारायण गोयन्का

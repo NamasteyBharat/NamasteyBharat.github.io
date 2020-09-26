@@ -22,7 +22,7 @@ Archives
 * [Element] Coming Soon..
 
 ## [Softwares](https://NamasteyBharat.github.io/Softwares)
-* [Telegram](tq_bt)
+* [Telegram](https://t.me/tq_bt)
 * [Website](https://NamasteyBharat.github.io/Softwares)
 * [Element] Coming Soon..
 

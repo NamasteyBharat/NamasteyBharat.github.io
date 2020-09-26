@@ -26,7 +26,7 @@ Archives
 * [Website](https://NamasteyBharat.github.io/Softwares)
 * [Element] Coming Soon..
 
-## [Songs](https://NamasteyBharat.github.io/Songs)
+## [Music](https://NamasteyBharat.github.io/Music)
 * [Telegram](https://t.me/tq_bt)
 * [Website](https://NamasteyBharat.github.io/Songs)
 * [Element] Coming Soon..

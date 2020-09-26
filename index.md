@@ -28,5 +28,5 @@ Archives
 
 ## [Music](https://NamasteyBharat.github.io/Music)
 * [Telegram](https://t.me/tq_bt)
-* [Website](https://NamasteyBharat.github.io/Songs)
+* [Website](https://NamasteyBharat.github.io/Music)
 * [Element] Coming Soon..

@@ -31,4 +31,4 @@ Archives
 * [Website](https://NamasteyBharat.github.io/Music)
 * [Element] Coming Soon..
 
-[![NamasteyBharat.github.io](https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle1.png)](https://NamasteyBharat.github.io)
+[![NamasteyBharat.github.io](https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle11.png)](https://NamasteyBharat.github.io)

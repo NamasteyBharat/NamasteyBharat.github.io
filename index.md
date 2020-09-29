@@ -16,19 +16,23 @@ Archives
 * [Website](https://NamasteyBharat.github.io/MannKiBaat)
 * [Element] Coming Soon..
 
-## [Apps](https://NamasteyBharat.github.io/Apps)
+## [Apps](https://t.me/tq_bt)
 * [Telegram](https://t.me/tq_bt)
 * [Website](https://NamasteyBharat.github.io/Apps)
 * [Element] Coming Soon..
 
-## [Softwares](https://NamasteyBharat.github.io/Softwares)
+## [Softwares](https://t.me/tq_bt)
 * [Telegram](https://t.me/tq_bt)
 * [Website](https://NamasteyBharat.github.io/Softwares)
 * [Element] Coming Soon..
 
-## [Music](https://NamasteyBharat.github.io/Music)
+## [Music](https://t.me/tq_bt)
 * [Telegram](https://t.me/tq_bt)
 * [Website](https://NamasteyBharat.github.io/Music)
 * [Element] Coming Soon..
 
-[![NamasteyBharat.github.io](https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle11.png)](https://NamasteyBharat.github.io)
+[![NamasteyBharat.github.io](https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle11.png)](https://t.me/tq_bt)
+* [Telegram](https://t.me/tq_bt)
+* [Website](https://NamasteyBharat.github.io/tq_bt)
+* [Element] Coming Soon..
+* [Instagram](https://instagram.com/tq_bt)

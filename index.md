@@ -31,8 +31,7 @@ Archives
 * [Website](https://NamasteyBharat.github.io/Music)
 * [Element] Coming Soon..
 
-## <img src="https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle11.png" alt="drawing" width="80"/>
-
+## <h2 id="music"><a href="https://t.me/tq_bt"><img src="https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle11.png" alt="drawing" width="80"/></a></h2>
 * [Telegram](https://t.me/tq_bt)
 * [Website](https://NamasteyBharat.github.io/tq_bt)
 * [Element] Coming Soon..

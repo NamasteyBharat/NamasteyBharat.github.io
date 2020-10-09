@@ -1,5 +1,4 @@
 [![NamasteyBharat.github.io](https://raw.githubusercontent.com/NamasteyBharat/NamasteyBharat.github.io/master/logo/rectangle.png)](https://NamasteyBharat.github.io)
-Archives
 
 ## [सत्यनारायण गोयन्का](https://NamasteyBharat.github.io/SNGoenka)
 * [Telegram](https://t.me/SNGoenka_NamasteyBharat)
@@ -16,8 +15,8 @@ Archives
 * [Website](https://NamasteyBharat.github.io/MannKiBaat)
 * [Element] Coming Soon..
 
-## [Apps](https://t.me/tq_bt)
-* [Telegram](https://t.me/tq_bt)
+## [Apps](https://NamasteyBharat.github.io/Apps)
+* [Telegram](https://t.me/Apps_NamasteyBharat)
 * [Website](https://NamasteyBharat.github.io/Apps)
 * [Element] Coming Soon..
 

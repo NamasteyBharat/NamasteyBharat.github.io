@@ -38,8 +38,8 @@
     // ### The main settings object
     // Where all the default settings are stored. Each of these variables and methods can be overwritten by the user-provided `options` object.
     settings: {
-      autoplay: false,
-      loop: false,
+      autoplay: true,
+      loop: true,
       preload: true,
       imageLocation: path + 'player-graphics.gif',
       retinaImageLocation: path + 'player-graphics@2x.gif',

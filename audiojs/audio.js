@@ -161,7 +161,7 @@
             errorMessage = getByClass(player.errorMessageClass, this.wrapper);
         container[audiojs].helpers.removeClass(this.wrapper, player.loadingClass);
         container[audiojs].helpers.addClass(this.wrapper, player.errorClass);
-        errorMessage.innerHTML = 'Error loading: "'+this.mp3+'"';
+        errorMessage.innerHTML = 'Check your connection';
       },
       init: function() {
         var player = this.settings.createPlayer;

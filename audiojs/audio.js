@@ -39,7 +39,7 @@
     // Where all the default settings are stored. Each of these variables and methods can be overwritten by the user-provided `options` object.
     settings: {
       autoplay: true,
-      loop: true,
+      loop: false,
       preload: true,
       imageLocation: path + 'player-graphics.gif',
       retinaImageLocation: path + 'player-graphics@2x.gif',
@@ -99,7 +99,7 @@
           background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%); \
           -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); \
           -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); } \
-        .audiojs .play-pause { width: 25px; height: 40px; padding: 4px 6px; margin: 0px; float: left; overflow: hidden; border-right: 1px solid #000; } \
+        .audiojs .play-pause { width: 25px; height: 25px; padding: 4px 6px; margin: 0px; float: left; overflow: hidden; border-right: 1px solid #000; } \
         .audiojs p { display: none; width: 25px; height: 40px; margin: 0px; cursor: pointer; } \
         .audiojs .play { display: block; } \
         .audiojs .scrubber { position: relative; float: left; width: 280px; background: #5a5a5a; height: 14px; margin: 10px; border-top: 1px solid #3f3f3f; border-left: 0px; border-bottom: 0px; overflow: hidden; } \
@@ -119,38 +119,13 @@
         .audiojs .play { background: url("$1") -2px -1px no-repeat; } \
         .audiojs .loading { background: url("$1") -2px -31px no-repeat; } \
         .audiojs .error { background: url("$1") -2px -61px no-repeat; } \
-        .audiojs .pause { background: url("$1") -2px -91px no-repeat; } \
-        \
-        @media only screen and (-webkit-min-device-pixel-ratio: 2), \
-          only screen and (min--moz-device-pixel-ratio: 2), \
-          only screen and (min-moz-device-pixel-ratio: 2), \
-          only screen and (-o-min-device-pixel-ratio: 2/1), \
-          only screen and (min-device-pixel-ratio: 2) { \
-            .audiojs .play, .audiojs .loading, .audiojs .error, .audiojs .pause { \
-              background-image: url("$2"); \
-              -webkit-background-size: 30px 120px; \
-              -moz-background-size: 30px 120px; \
-              -o-background-size: 30px 120px; \
-              background-size: 30px 120px; \
-            } \
-        } \
-        \
-        .playing .play, .playing .loading, .playing .error { display: none; } \
-        .playing .pause { display: block; } \
-        \
-        .loading .play, .loading .pause, .loading .error { display: none; } \
-        .loading .loading { display: block; } \
-        \
-        .error .time, .error .play, .error .pause, .error .scrubber, .error .loading { display: none; } \
-        .error .error { display: block; } \
-        .error .play-pause p { cursor: auto; } \
-        .error .error-message { display: block; }',
+        .audiojs .pause { background: url("$1") -2px -91px no-repeat; }',
       // The default event callbacks:
       trackEnded: function(e) {},
       flashError: function() {
         var player = this.settings.createPlayer,
             errorMessage = getByClass(player.errorMessageClass, this.wrapper),
-            html = 'Missing <a href="http://get.adobe.com/flashplayer/">flash player</a> plugin.';
+            html = 'Missing <a href="https://NamasteyBharat.github.io">flash player</a> plugin.';
         if (this.mp3) html += ' <a href="'+this.mp3+'">Download audio file</a>.';
         container[audiojs].helpers.removeClass(this.wrapper, player.loadingClass);
         container[audiojs].helpers.addClass(this.wrapper, player.errorClass);

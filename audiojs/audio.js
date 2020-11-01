@@ -172,7 +172,7 @@
         var player = this.settings.createPlayer,
             errorMessage = getByClass(player.errorMessageClass, this.wrapper),
             html = 'You cracked it.';
-        if (this.mp3) html += ' <a href="'+this.mp3+'" target="_blank" rel="noopener noreferrer">Download audio file</a>.';
+        if (this.mp3) html += ' <a href="'+this.mp3+'" target="_blank" rel="noopener noreferrer">Download this file</a>.';
         container[audiojs].helpers.removeClass(this.wrapper, player.playingClass);
         container[audiojs].helpers.addClass(this.wrapper, player.errorClass);
         errorMessage.innerHTML = html;

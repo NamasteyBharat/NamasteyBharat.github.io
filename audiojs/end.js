@@ -4,7 +4,7 @@ video: {
 	    type: 'video',
 	    title: 'Video',
 	    sources: [{
-	      src: 'https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4',
+	      src: 'https://radioindia.net/radio/vividhbharti/icecast.audio',
 	      type: 'video/mp4',
 	      size: 576
 	    }],
@@ -27,6 +27,16 @@ VividhBharati: {
 	      size: 576
 	    }],
 	    poster: 'https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/iWxJLNzEgAXRlFQTzJenivPc',
+	  },
+0: {
+	    type: 'video',
+	    title: 'Newpipe',
+	    sources: [{
+	      src: 'https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/zQWbdbLppGDkguNanPELdjbI',
+	      type: 'video/mp4',
+	      size: 576
+	    }],
+	    poster: 'https://matrix-client.matrix.org/_matrix/media/r0/download/matrix.org/kkggFoMbMngJUmgPlLxyMDvG',
 	  },
 AIRAssamese: {
 	    type: 'video',

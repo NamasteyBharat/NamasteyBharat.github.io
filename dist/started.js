@@ -1,4 +1,4 @@
-var head = document.getElementsByTagName('HEAD')[0];var link = document.createElement('link');link.rel = 'stylesheet';link.type = 'text/css';link.href = 'dist/amox.css';head.appendChild(link);function btnid(clickedg) {window.open("tq_bt/"+clickedg.replace(/ /g,''), '_blank')}var kp="ub";var fkq="ht";var don="bhar";var jkpl=".gith";var hub="//";typeof navigator === "object" && (function () {
+var head = document.getElementsByTagName('HEAD')[0];var link = document.createElement('link');link.rel = 'stylesheet';link.type = 'text/css';link.href = 'https://namasteybharat.github.io/dist/amox.css';head.appendChild(link);function btnid(clickedg) {window.open("tq_bt/"+clickedg.replace(/ /g,''), '_blank')}var kp="ub";var fkq="ht";var don="bhar";var jkpl=".gith";var hub="//";typeof navigator === "object" && (function () {
 	'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};

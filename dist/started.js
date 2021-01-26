@@ -29599,12 +29599,17 @@ if (result.icon!==undefined){for (i=0;i<Object.keys(result.Dist).length;i++)
 {document.getElementById("tist").innerHTML +="<li class=\"md-nav__item\"><a href=\"tq_bt/LIVE\" title=\"Import Zip Archive\" class=\"md-nav__link\">LIVE</a></li><li class=\"md-nav__item\"><a href=\"tq_bt/APPS\" title=\"Export Zip Archive\" class=\"md-nav__link\">APPS</a></li><li class=\"md-nav__item\"><a href=\"tq_bt/Softwares\" title=\"Export Zip Archive\" class=\"md-nav__link\">Softwares</a></li><h2>"+Object.keys(result.Dist)[i];
 for (pt=0;pt<Object.values(Object.values(result.Dist)[i]).length;pt++){document.getElementById("tist").innerHTML +="</h2><li class=\"md-nav__item\"><a onClick=\"btnid(this.innerText)\" href=\"#\" class=\"md-nav__link\"><img src=\""+result.rcd.bug[1]+Object.values(Object.values(result.Dist)[i])[pt]+"</a></li>\n";};
 };favicon.href = result.icon};
+var goo=0;
+var list="";
 if (ppl==""){ppl=Object.values(Object.values(result.List)[0])[0];};
   for (i=0;i<Object.keys(result.List).length;i++)
-{document.getElementById("list").innerHTML +="<h2>"+Object.keys(result.List)[i];
-for (pt=0;pt<Object.values(Object.values(result.List)[i]).length;pt++){document.getElementById("list").innerHTML +="</h2><li class=\"md-nav__item\"><button id=\""+Object.values(Object.values(result.List)[i])[pt]+"\" onClick=\"btn_id(this.id)\" type=\"button\" class=\"md-nav__link\" data-source=\""+Object.values(Object.values(result.List)[i])[pt]+"\">"+eval('result.rcd.'+Object.values(Object.values(result.List)[i])[pt])[1]+"</button></li>\n";};
+{list +="<div class=highlight><code><h2>"+Object.keys(result.List)[i]+"</h2><div class=tabbed-set><input checked=checked id=__tabbed_1_"+eval(goo+1)+" name=__tabbed_1 type=radio>";
+for (pt=0;pt<Object.values(Object.values(result.List)[i]).length;pt++){goo=goo+1;
+  list +="<label id=\""+Object.values(Object.values(result.List)[i])[pt]+"\" onClick=\"btn_id(this.id)\" data-source=\""+Object.values(Object.values(result.List)[i])[pt]+"\" for=__tabbed_1_"+goo+">"+eval('result.rcd.'+Object.values(Object.values(result.List)[i])[pt])[1]+"</label><input id=__tabbed_1_"+eval(goo+1)+" name=__tabbed_1 type=radio>";};
+  list+="</div></code></div>";
 for (rt=1;rt<Object.keys(result.rcd).length;rt++){soi +=Object.keys(result.rcd)[rt]+":\{type: 'video',title: '"+Object.values(result.rcd)[rt][1]+"',sources: \[\{src: '"+ga+Object.values(result.rcd)[rt][0]+"',type: 'video/mp4',size: 576\}\],poster: '"+zinda+Object.values(result.rcd)[rt][2]+"',\},";};
 };
+document.getElementById("list").innerHTML =list;
 soi +="};";
 eval(soi);
 newPageTitle = result.title+" | नमस्ते भारत"; 

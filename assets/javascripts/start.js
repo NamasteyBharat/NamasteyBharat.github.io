@@ -1,4 +1,4 @@
-var head = document.getElementsByTagName('HEAD')[0];var link = document.createElement('link');link.rel = 'stylesheet';link.type = 'text/css';link.href = '/assets/amo.css';head.appendChild(link);function btnid(clickedg) {window.open("tq_bt/"+clickedg.replace(/ /g,''), '_blank')}var kp="ub";var fkq="ht";var don="bhar";var jkpl=".gith";var hub="//";typeof navigator === "object" && (function () {
+typeof navigator === "object" && (function () {
 	'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -23705,7 +23705,7 @@ var head = document.getElementsByTagName('HEAD')[0];var link = document.createEl
 	  // Default controls
 	  controls: [  //'download', 'play-large',// 'restart',
 	   'mute', 'volume',  'rewind',	  'play', 'fast-forward', 'progress', 'current-time', 'duration',
-	  'settings', 'fullscreen' ,// 'captions', 'pip', 'airplay'
+	  'settings', 'fullscreen', 'pip', 'airplay' ,// 'captions'
 	  ],
 	  settings: ['captions', 'quality', 'speed'],
 	  // Localisation
@@ -29544,102 +29544,3 @@ var head = document.getElementsByTagName('HEAD')[0];var link = document.createEl
 	})();
 
 }());
-var cpl=window.location.href;
-var utj=".io";
-var uko="tps:";
-var hk="nama";
-var ppl="";
-var yj="at";
-var bath=cpl.indexOf("watch?v=")+8;
-var cat=cpl.indexOf("youtu.be/")+9;
-var dojk="stey";
-var favicon=document.head.querySelector('link[rel="shortcut icon"]');
-var chadar="0";
-var hng="d/";
-var mpo=hub+hk+dojk+don+yj+jkpl+kp+utj;
-  if(bath!==7){var hj=cpl.slice(cpl.indexOf(hub),32);
-  chappal=cpl.slice(bath,bath+11);document.getElementById("botn").innerHTML = "<button onclick=\"onClick()\"> Video </button>";
-          document.getElementById("container").innerHTML = "<video style=\"outline:none;width:100%;background-color:#000\" playsinline poster=\"https://invidious.kavin.rocks/vi/"+chappal+"/maxres.jpg\" controls preload=\"metadata\"> <source src=\"https://invidious.kavin.rocks/latest_version?id="+chappal+"&itag=140\"></video>";
-          $.ajax({url: "https://noembed.com/embed?url=https://www.youtube.com/watch?v="+chappal,dataType:'json',success: function(result){ if(result.title!==undefined){$("#ttl").html("<code>"+result.title+"</code><br><a style=\"color:#4160c8\" href=\""+result.author_url.replace(/www.youtube.com/g,'yewtu.be')+"\">"+result.author_name+"</a>"); };}});if(bath!==41){window.location.replace("https://namasteybharat.github.io/watch?v="+chappal)}}else{if(cat!==8){chappal=cpl.slice(cat,cat+11);window.location.replace("https://namasteybharat.github.io/watch?v="+chappal)}else{var tuj=cpl.indexOf(".io/")+4;
-    var dpl=cpl.indexOf("#");
-if (dpl<0){dpl=undefined;}else{ppl=cpl.slice(dpl+1)}
-var dimple=cpl.slice(tuj,dpl);
-    var gyu=dimple;
-    var hj=cpl.slice(cpl.indexOf(hub),cpl.indexOf(gyu)-1);
-  }};
-  var ase="rahiakhe";
-var soi="sources ={";
-if(mpo==hj){var cong=fkq+uko+hub+ase+"rajot"+jkpl+kp+utj+"/";
-  don="rix";
-    dojk="-clie";
-    hk="nt.";
-    hub=yj+don+".or";
-    var tt=gyu
-    uko="g/_m"+yj+don+"/medi";
-    fkq="a/r0/dow";
-  utj="ht";
-if(cpl.includes("tq_bt")){gyu=cong+"rkl/0100011101001000111101"+gyu+".mp3"}else{gyu=cong+"rkl/0100011101001000111101"+gyu+"bitstat"+don+gyu+".mp4"};
-kp="tps\:";
-jopl="//";
-yj="m"+yj;
-var tkb="matrix.or";
-hng=utj+kp+jopl+yj+don+dojk+hk+tkb+uko+fkq+"nloa"+hng;
-}else{hng=gyu=dojk+yj+hng;
-document.getElementById("fys").href ="j";
-};
-$.ajax({url: gyu,async: false,dataType:'json',success: function(hof){gyu=hng+tkb+"g/"+Object.values(hof)[0];}});
-$.ajax({url: gyu,async: false,dataType:'json',success: function(result){ if(result.title!==undefined){dot=result;
-if (result.rcd.bug[0]=="0"){ga=hng+tkb+"g/"}else{ga=hng+dot.rcd.bug[0]+"/"};
-if (result.rcd.bug[2]=="0"){zinda=hng+tkb+"g/"}else{zinda=hng+dot.rcd.bug[2]+"/"};
-if (result.rcd.bug[0]=="1"){ga=""};
-if (result.rcd.bug[2]=="1"){zinda=""};
-if (result.rcd.bug[3]=="0"){chadar="1"};
-var goo=0;
-var list="";
-if (ppl==""){ppl=Object.values(Object.values(result.List)[0])[0];};
-  for (i=0;i<Object.keys(result.List).length;i++)
-{list +="<p style=\"position: -webkit-sticky; position: sticky; top: 0;background:#ffffff;margin:0 -0.6rem 0 -0.8rem;padding:.4rem .6rem 1.2rem 2rem;\" ></p>  <p style=\"position: -webkit-sticky; position: sticky; top: 0;max-height:.8rem;max-width:-1.4rem;overflow:hidden\"  class=admonition-title id=\""+Object.keys(result.List)[i].replace(/ /g,'')+"\">"+Object.keys(result.List)[i]+"<a class=headerlink href=#"+Object.keys(result.List)[i].replace(/ /g,'')+">&para;</a></p>  <div class=\"admonition tip\" style=\"border-left:0\">";
-for (pt=0;pt<Object.values(Object.values(result.List)[i]).length;pt++){goo=goo+1;
-  list +="<p style=\"overflow:hidden;padding:.4rem .6rem .4rem .6rem;\" class=\"thread admonition note\" id=\""+Object.values(Object.values(result.List)[i])[pt]+"\" onClick=\"btn_id(this.id)\" data-source=\""+Object.values(Object.values(result.List)[i])[pt]+"\">"+eval('result.rcd.'+Object.values(Object.values(result.List)[i])[pt])[1]+"</p>";};
-  list +="</div>"
-for (rt=1;rt<Object.keys(result.rcd).length;rt++){soi +=Object.keys(result.rcd)[rt]+":\{type: 'video',title: '"+Object.values(result.rcd)[rt][1]+"',sources: \[\{src: '"+ga+Object.values(result.rcd)[rt][0]+"',type: 'video/mp4',size: 576\}\],poster: '"+zinda+Object.values(result.rcd)[rt][2]+"',\},";};
-};
-document.getElementById("list").innerHTML =list;
-soi +="};";
-eval(soi);
-newPageTitle = result.title+" | नमस्ते भारत"; 
-document.title = newPageTitle;
-document.getElementById("chal").innerHTML = result.title;
-};}});
- function btn_id(clickedg) {player.play();
-   document.title=eval("sources."+clickedg+".title")+" - "+newPageTitle;
-  ell=document.getElementsByClassName("thread"); for (var i = 0; i < ell.length; i++) {ell[i].style.fontWeight = "initial";ell[i].classList.remove("warning");
-    }document.getElementById(clickedg).style.fontWeight="800";
-    ;document.getElementById(clickedg).classList.add("tip");document.getElementById(clickedg).classList.add("warning");
-    document.getElementById("ppl").innerHTML = eval("sources."+clickedg+".title");
-   document.getElementById("ttl").innerHTML = eval("sources."+clickedg+".title")+"<a class=\"headerlink plyr__cite plyr__cite--"+clickedg+"\" href=#"+clickedg+">&para;</a>";
-if(chadar=="1") {document.getElementById("description").innerHTML = eval('dot.rcd.'+clickedg+'[3]')};
-    	};
-    	document.getElementById(ppl).style.fontWeight="800";
-    ;document.getElementById(ppl).classList.add("tip");document.getElementById(ppl).classList.add("warning");
-    	document.getElementById("ttl").innerHTML = eval("sources."+ppl+".title")+"<a class=\"headerlink plyr__cite--\" href=#"+ppl+">&para;</a>";
-     	  document.title=eval("sources."+ppl+".title")+" - "+newPageTitle;
-     	 if(chadar=="1") {document.getElementById("description").innerHTML = eval("dot.rcd."+ppl+"[3]");};
-     	  if(bath!==7){document.title = "Invidious | नमस्ते भारत";document.getElementById("chall").innerHTML = "<a href=\"https://yewtu.be\">Invidious</a>";};
-    var clicks = 0;
-    if(mpo!==hj){sources="};";hng=clicks;
-      chappal='x';}else{};
-       if(bath==7){document.getElementById("container").innerHTML = "<video crossorigin autoplay playsinline data-poster=\""+zinda+Object.values(Object.values(dot.rcd)[1])[2]+"\" id=\"player\" ><source src=\""+ga+Object.values(Object.values(dot.rcd)[1])[0]+"\" type=\"video/mp4\" size=\"576\"/></video>";}
-    function onClick() {
-        clicks += 1;
-        var x=clicks%2;
-          if(x==1){$("#botn").html("<button onclick=\"onClick()\"> Audio </button>");
-          $("#container").html("<video style=\"outline:none;width:100%;background-color:#000\" playsinline poster=\"https://invidious.kavin.rocks/vi/"+chappal+"/maxres.jpg\" controls preload=\"metadata\"> <source src=\"https://invidious.kavin.rocks/latest_version?id="+chappal+"&itag=18\"></video>");}
-          if(x==2){$("#botn").html("<button onclick=\"onClick()\"> Click to refresh </button>");
-          $("#container").html("<video style=\"outline:none;width:100%;background-color:#000\" playsinline poster=\"https://invidious.kavin.rocks/vi/"+chappal+"/maxres.jpg\" controls preload=\"metadata\"> <source src=\"https://invidious.kavin.rocks/latest_version?id="+chappal+"&itag=22\"></video>");}
-        if(x==0){document.location.reload();
-          $("#botn").html("");
-        }
-    };
-    document.getElementsByClassName("md-footer-nav__link--next").addEventListener("click", nextmedia);
-     document.getElementsByClassName("md-footer-nav__link--prev").addEventListener("click", prevmedia);

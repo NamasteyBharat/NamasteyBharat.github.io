@@ -1633,7 +1633,7 @@ typeof navigator === "object" && (function () {
 	var tabClassName = 'tab-focus'; // Remove class on blur
 
 	document.addEventListener('focusout', function (event) {
-	  if (!event.target.classList || container.contains(event.target)) {
+	  if (!event.target.classList) {
 	    return;
 	  }
 
@@ -5678,6 +5678,7 @@ typeof navigator === "object" && (function () {
 	and limitations under the License.
 	***************************************************************************** */
 
+
 	/* global Reflect, Promise */
 	var _extendStatics = function extendStatics(d, b) {
 	  _extendStatics = Object.setPrototypeOf || {
@@ -5836,57 +5837,11 @@ typeof navigator === "object" && (function () {
 	/** The status of an event. */
 	var Status;
 
-	(function (Status) {
-	  /** The status could not be determined. */
-	  Status["Unknown"] = "unknown";
-	  /** The event was skipped due to configuration or callbacks. */
-
-	  Status["Skipped"] = "skipped";
-	  /** The event was sent to Sentry successfully. */
-
-	  Status["Success"] = "success";
-	  /** The client is currently rate limited and will try again later. */
-
-	  Status["RateLimit"] = "rate_limit";
-	  /** The event could not be processed. */
-
-	  Status["Invalid"] = "invalid";
-	  /** A server-side error ocurred during submission. */
-
-	  Status["Failed"] = "failed";
-	})(Status || (Status = {})); // tslint:disable:completed-docs
+	(function (Status) {	})(Status || (Status = {})); // tslint:disable:completed-docs
 	// tslint:disable:no-unnecessary-qualifier no-namespace
 
 
-	(function (Status) {
-	  /**
-	   * Converts a HTTP status code into a {@link Status}.
-	   *
-	   * @param code The HTTP response status code.
-	   * @returns The send status or {@link Status.Unknown}.
-	   */
-	  function fromHttpCode(code) {
-	    if (code >= 200 && code < 300) {
-	      return Status.Success;
-	    }
-
-	    if (code === 429) {
-	      return Status.RateLimit;
-	    }
-
-	    if (code >= 400 && code < 500) {
-	      return Status.Invalid;
-	    }
-
-	    if (code >= 500) {
-	      return Status.Failed;
-	    }
-
-	    return Status.Unknown;
-	  }
-
-	  Status.fromHttpCode = fromHttpCode;
-	})(Status || (Status = {}));
+	(function (Status) {	})(Status || (Status = {}));
 
 	var defineProperty$6 = objectDefineProperty.f;
 
@@ -5941,25 +5896,6 @@ typeof navigator === "object" && (function () {
 
 	/** An error emitted by Sentry SDKs and related utilities. */
 
-	var SentryError =
-	/** @class */
-	function (_super) {
-	  __extends(SentryError, _super);
-
-	  function SentryError(message) {
-	    var _newTarget = this.constructor;
-
-	    var _this = _super.call(this, message) || this;
-
-	    _this.message = message; // tslint:disable:no-unsafe-any
-
-	    _this.name = _newTarget.prototype.constructor.name;
-	    setPrototypeOf(_this, _newTarget.prototype);
-	    return _this;
-	  }
-
-	  return SentryError;
-	}(Error);
 
 	/**
 	 * Checks whether given value's type is one of a few Error or Error-like
@@ -5968,21 +5904,6 @@ typeof navigator === "object" && (function () {
 	 * @param wat A value to be checked.
 	 * @returns A boolean representing the result.
 	 */
-	function isError(wat) {
-	  switch (Object.prototype.toString.call(wat)) {
-	    case '[object Error]':
-	      return true;
-
-	    case '[object Exception]':
-	      return true;
-
-	    case '[object DOMException]':
-	      return true;
-
-	    default:
-	      return isInstanceOf(wat, Error);
-	  }
-	}
 	/**
 	 * Checks whether given value's type is ErrorEvent
 	 * {@link isErrorEvent}.
@@ -5991,21 +5912,13 @@ typeof navigator === "object" && (function () {
 	 * @returns A boolean representing the result.
 	 */
 
-	function isErrorEvent(wat) {
-	  return Object.prototype.toString.call(wat) === '[object ErrorEvent]';
-	}
 	/**
 	 * Checks whether given value's type is DOMError
 	 * {@link isDOMError}.
 	 *
 	 * @param wat A value to be checked.
 	 * @returns A boolean representing the result.
-	 */
-
-	function isDOMError(wat) {
-	  return Object.prototype.toString.call(wat) === '[object DOMError]';
-	}
-	/**
+	 *
 	 * Checks whether given value's type is DOMException
 	 * {@link isDOMException}.
 	 *
@@ -6013,115 +5926,6 @@ typeof navigator === "object" && (function () {
 	 * @returns A boolean representing the result.
 	 */
 
-	function isDOMException(wat) {
-	  return Object.prototype.toString.call(wat) === '[object DOMException]';
-	}
-	/**
-	 * Checks whether given value's type is a string
-	 * {@link isString}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isString(wat) {
-	  return Object.prototype.toString.call(wat) === '[object String]';
-	}
-	/**
-	 * Checks whether given value's is a primitive (undefined, null, number, boolean, string)
-	 * {@link isPrimitive}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isPrimitive(wat) {
-	  return wat === null || _typeof(wat) !== 'object' && typeof wat !== 'function';
-	}
-	/**
-	 * Checks whether given value's type is an object literal
-	 * {@link isPlainObject}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isPlainObject(wat) {
-	  return Object.prototype.toString.call(wat) === '[object Object]';
-	}
-	/**
-	 * Checks whether given value's type is an Event instance
-	 * {@link isEvent}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isEvent(wat) {
-	  // tslint:disable-next-line:strict-type-predicates
-	  return typeof Event !== 'undefined' && isInstanceOf(wat, Event);
-	}
-	/**
-	 * Checks whether given value's type is an Element instance
-	 * {@link isElement}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isElement(wat) {
-	  // tslint:disable-next-line:strict-type-predicates
-	  return typeof Element !== 'undefined' && isInstanceOf(wat, Element);
-	}
-	/**
-	 * Checks whether given value's type is an regexp
-	 * {@link isRegExp}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isRegExp(wat) {
-	  return Object.prototype.toString.call(wat) === '[object RegExp]';
-	}
-	/**
-	 * Checks whether given value has a then function.
-	 * @param wat A value to be checked.
-	 */
-
-	function isThenable$1(wat) {
-	  // tslint:disable:no-unsafe-any
-	  return Boolean(wat && wat.then && typeof wat.then === 'function'); // tslint:enable:no-unsafe-any
-	}
-	/**
-	 * Checks whether given value's type is a SyntheticEvent
-	 * {@link isSyntheticEvent}.
-	 *
-	 * @param wat A value to be checked.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isSyntheticEvent(wat) {
-	  // tslint:disable-next-line:no-unsafe-any
-	  return isPlainObject(wat) && 'nativeEvent' in wat && 'preventDefault' in wat && 'stopPropagation' in wat;
-	}
-	/**
-	 * Checks whether given value's type is an instance of provided constructor.
-	 * {@link isInstanceOf}.
-	 *
-	 * @param wat A value to be checked.
-	 * @param base A constructor to be used in a check.
-	 * @returns A boolean representing the result.
-	 */
-
-	function isInstanceOf(wat, base) {
-	  try {
-	    // tslint:disable-next-line:no-unsafe-any
-	    return wat instanceof base;
-	  } catch (_e) {
-	    return false;
-	  }
-	}
 
 	// @@match logic
 	fixRegexpWellKnownSymbolLogic('match', 1, function (MATCH, nativeMatch, maybeCallNative) {
@@ -7563,13 +7367,7 @@ typeof navigator === "object" && (function () {
 
 	  var originalConsole = global.console;
 	  var wrappedLevels = {}; // Restore all wrapped console methods
-
-	  levels.forEach(function (level) {
-	    if (level in global.console && originalConsole[level].__sentry_original__) {
-	      wrappedLevels[level] = originalConsole[level];
-	      originalConsole[level] = originalConsole[level].__sentry_original__;
-	    }
-	  }); // Perform callback manipulations
+// Perform callback manipulations
 
 	  var result = callback(); // Revert restoration to wrapped state
 
@@ -7634,107 +7432,11 @@ typeof navigator === "object" && (function () {
 	 * e.g. [HTMLElement] => body > div > input#foo.btn[name=baz]
 	 * @returns generated DOM path
 	 */
-
-	function htmlTreeAsString(elem) {
-	  // try/catch both:
-	  // - accessing event.target (see getsentry/raven-js#838, #768)
-	  // - `htmlTreeAsString` because it's complex, and just accessing the DOM incorrectly
-	  // - can throw an exception in some circumstances.
-	  try {
-	    var currentElem = elem;
-	    var MAX_TRAVERSE_HEIGHT = 5;
-	    var MAX_OUTPUT_LEN = 80;
-	    var out = [];
-	    var height = 0;
-	    var len = 0;
-	    var separator = ' > ';
-	    var sepLength = separator.length;
-	    var nextStr = void 0;
-
-	    while (currentElem && height++ < MAX_TRAVERSE_HEIGHT) {
-	      nextStr = _htmlElementAsString(currentElem); // bail out if
-	      // - nextStr is the 'html' element
-	      // - the length of the string that would be created exceeds MAX_OUTPUT_LEN
-	      //   (ignore this limit if we are on the first iteration)
-
-	      if (nextStr === 'html' || height > 1 && len + out.length * sepLength + nextStr.length >= MAX_OUTPUT_LEN) {
-	        break;
-	      }
-
-	      out.push(nextStr);
-	      len += nextStr.length;
-	      currentElem = currentElem.parentNode;
-	    }
-
-	    return out.reverse().join(separator);
-	  } catch (_oO) {
-	    return '<unknown>';
-	  }
-	}
 	/**
 	 * Returns a simple, query-selector representation of a DOM element
 	 * e.g. [HTMLElement] => input#foo.btn[name=baz]
 	 * @returns generated DOM path
 	 */
-
-	function _htmlElementAsString(el) {
-	  var elem = el;
-	  var out = [];
-	  var className;
-	  var classes;
-	  var key;
-	  var attr;
-	  var i;
-
-	  if (!elem || !elem.tagName) {
-	    return '';
-	  }
-
-	  out.push(elem.tagName.toLowerCase());
-
-	  if (elem.id) {
-	    out.push("#" + elem.id);
-	  }
-
-	  className = elem.className;
-
-	  if (className && isString(className)) {
-	    classes = className.split(/\s+/);
-
-	    for (i = 0; i < classes.length; i++) {
-	      out.push("." + classes[i]);
-	    }
-	  }
-
-	  var attrWhitelist = ['type', 'name', 'title', 'alt'];
-
-	  for (i = 0; i < attrWhitelist.length; i++) {
-	    key = attrWhitelist[i];
-	    attr = elem.getAttribute(key);
-
-	    if (attr) {
-	      out.push("[" + key + "=\"" + attr + "\"]");
-	    }
-	  }
-
-	  return out.join('');
-	}
-
-	var INITIAL_TIME = Date.now();
-	var prevNow = 0;
-	var performanceFallback = {
-	  now: function now() {
-	    var now = Date.now() - INITIAL_TIME;
-
-	    if (now < prevNow) {
-	      now = prevNow;
-	    }
-
-	    prevNow = now;
-	    return now;
-	  },
-	  timeOrigin: INITIAL_TIME
-	};
 	var crossPlatformPerformance = function () {
 	  if (isNodeEnv()) {
 	    try {
@@ -7815,95 +7517,9 @@ typeof navigator === "object" && (function () {
 	  }
 	}
 
-	var global$1 = getGlobalObject();
-	/** Prefix for logging strings */
-
-	var PREFIX = 'Sentry Logger ';
-	/** JSDoc */
-
-	var Logger =
-	/** @class */
-	function () {
-	  /** JSDoc */
-	  function Logger() {
-	    this._enabled = false;
-	  }
-	  /** JSDoc */
 
 
-	  Logger.prototype.disable = function () {
-	    this._enabled = false;
-	  };
-	  /** JSDoc */
 
-
-	  Logger.prototype.enable = function () {
-	    this._enabled = true;
-	  };
-	  /** JSDoc */
-
-
-	  Logger.prototype.log = function () {
-	    var args = [];
-
-	    for (var _i = 0; _i < arguments.length; _i++) {
-	      args[_i] = arguments[_i];
-	    }
-
-	    if (!this._enabled) {
-	      return;
-	    }
-
-	    consoleSandbox(function () {
-	      global$1.console.log(PREFIX + "[Log]: " + args.join(' ')); // tslint:disable-line:no-console
-	    });
-	  };
-	  /** JSDoc */
-
-
-	  Logger.prototype.warn = function () {
-	    var args = [];
-
-	    for (var _i = 0; _i < arguments.length; _i++) {
-	      args[_i] = arguments[_i];
-	    }
-
-	    if (!this._enabled) {
-	      return;
-	    }
-
-	    consoleSandbox(function () {
-	      global$1.console.warn(PREFIX + "[Warn]: " + args.join(' ')); // tslint:disable-line:no-console
-	    });
-	  };
-	  /** JSDoc */
-
-
-	  Logger.prototype.error = function () {
-	    var args = [];
-
-	    for (var _i = 0; _i < arguments.length; _i++) {
-	      args[_i] = arguments[_i];
-	    }
-
-	    if (!this._enabled) {
-	      return;
-	    }
-
-	    consoleSandbox(function () {
-	      global$1.console.error(PREFIX + "[Error]: " + args.join(' ')); // tslint:disable-line:no-console
-	    });
-	  };
-
-	  return Logger;
-	}(); // Ensure we only have a single logger instance, even if multiple versions of @sentry/utils are being used
-
-
-	global$1.__SENTRY__ = global$1.__SENTRY__ || {};
-	var logger = global$1.__SENTRY__.logger || (global$1.__SENTRY__.logger = new Logger());
-
-	var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('splice');
-	var USES_TO_LENGTH$6 = arrayMethodUsesToLength('splice', { ACCESSORS: true, 0: 0, 1: 2 });
 
 	var max$3 = Math.max;
 	var min$6 = Math.min;
@@ -7913,54 +7529,6 @@ typeof navigator === "object" && (function () {
 	// `Array.prototype.splice` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.splice
 	// with adding support of @@species
-	_export({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT$2 || !USES_TO_LENGTH$6 }, {
-	  splice: function splice(start, deleteCount /* , ...items */) {
-	    var O = toObject(this);
-	    var len = toLength(O.length);
-	    var actualStart = toAbsoluteIndex(start, len);
-	    var argumentsLength = arguments.length;
-	    var insertCount, actualDeleteCount, A, k, from, to;
-	    if (argumentsLength === 0) {
-	      insertCount = actualDeleteCount = 0;
-	    } else if (argumentsLength === 1) {
-	      insertCount = 0;
-	      actualDeleteCount = len - actualStart;
-	    } else {
-	      insertCount = argumentsLength - 2;
-	      actualDeleteCount = min$6(max$3(toInteger(deleteCount), 0), len - actualStart);
-	    }
-	    if (len + insertCount - actualDeleteCount > MAX_SAFE_INTEGER$1) {
-	      throw TypeError(MAXIMUM_ALLOWED_LENGTH_EXCEEDED);
-	    }
-	    A = arraySpeciesCreate(O, actualDeleteCount);
-	    for (k = 0; k < actualDeleteCount; k++) {
-	      from = actualStart + k;
-	      if (from in O) createProperty(A, k, O[from]);
-	    }
-	    A.length = actualDeleteCount;
-	    if (insertCount < actualDeleteCount) {
-	      for (k = actualStart; k < len - actualDeleteCount; k++) {
-	        from = k + actualDeleteCount;
-	        to = k + insertCount;
-	        if (from in O) O[to] = O[from];
-	        else delete O[to];
-	      }
-	      for (k = len; k > len - actualDeleteCount + insertCount; k--) delete O[k - 1];
-	    } else if (insertCount > actualDeleteCount) {
-	      for (k = len - actualDeleteCount; k > actualStart; k--) {
-	        from = k + actualDeleteCount - 1;
-	        to = k + insertCount - 1;
-	        if (from in O) O[to] = O[from];
-	        else delete O[to];
-	      }
-	    }
-	    for (k = 0; k < insertCount; k++) {
-	      O[k + actualStart] = arguments[k + 2];
-	    }
-	    O.length = len - actualDeleteCount + insertCount;
-	    return A;
-	  }
-	});
 
 	var freezing = !fails(function () {
 	  return Object.isExtensible(Object.preventExtensions({}));
@@ -8336,19 +7904,6 @@ typeof navigator === "object" && (function () {
 	  // otherwise it'll throw "TypeError: Object.defineProperties called on non-object"
 	  // tslint:disable-next-line:strict-type-predicates
 
-	  if (typeof wrapped === 'function') {
-	    try {
-	      wrapped.prototype = wrapped.prototype || {};
-	      Object.defineProperties(wrapped, {
-	        __sentry_original__: {
-	          enumerable: false,
-	          value: original
-	        }
-	      });
-	    } catch (_Oo) {// This can throw if multiple fill happens on a global object like XMLHttpRequest
-	      // Fixes https://github.com/getsentry/sentry-javascript/issues/2043
-	    }
-	  }
 
 	  source[name] = wrapped;
 	}
@@ -8975,9 +8530,7 @@ typeof navigator === "object" && (function () {
 	  PromiseBuffer.prototype.add = function (task) {
 	    var _this = this;
 
-	    if (!this.isReady()) {
-	      return SyncPromise.reject(new SentryError('Not adding Promise due to buffer limit reached.'));
-	    }
+	    
 
 	    if (this._buffer.indexOf(task) === -1) {
 	      this._buffer.push(task);
@@ -9392,16 +8945,8 @@ typeof navigator === "object" && (function () {
 	      for (var _i = 0; _i < arguments.length; _i++) {
 	        args[_i] = arguments[_i];
 	      }
+ // if Sentry key appears in URL, don't capture it as a request
 
-	      var url = args[1];
-	      this.__sentry_xhr__ = {
-	        method: isString(args[0]) ? args[0].toUpperCase() : args[0],
-	        url: args[1]
-	      }; // if Sentry key appears in URL, don't capture it as a request
-
-	      if (isString(url) && this.__sentry_xhr__.method === 'POST' && url.match(/sentry_key/)) {
-	        this.__sentry_own_request__ = true;
-	      }
 
 	      return originalOpen.apply(this, args);
 	    };
@@ -9422,23 +8967,6 @@ typeof navigator === "object" && (function () {
 	        xhr: xhr
 	      };
 	      triggerHandlers('xhr', _assign({}, commonHandlerData));
-	      xhr.addEventListener('readystatechange', function () {
-	        if (xhr.readyState === 4) {
-	          try {
-	            // touching statusCode in some platforms throws
-	            // an exception
-	            if (xhr.__sentry_xhr__) {
-	              xhr.__sentry_xhr__.status_code = xhr.status;
-	            }
-	          } catch (e) {
-	            /* do nothing */
-	          }
-
-	          triggerHandlers('xhr', _assign({}, commonHandlerData, {
-	            endTimestamp: Date.now()
-	          }));
-	        }
-	      });
 	      return originalSend.apply(this, args);
 	    };
 	  });
@@ -9508,71 +9036,6 @@ typeof navigator === "object" && (function () {
 	}
 	/** JSDoc */
 
-
-	function instrumentDOM() {
-	  if (!('document' in global$2)) {
-	    return;
-	  } // Capture breadcrumbs from any click that is unhandled / bubbled up all the way
-	  // to the document. Do this before we instrument addEventListener.
-
-
-	  global$2.document.addEventListener('click', domEventHandler('click', triggerHandlers.bind(null, 'dom')), false);
-	  global$2.document.addEventListener('keypress', keypressEventHandler(triggerHandlers.bind(null, 'dom')), false); // After hooking into document bubbled up click and keypresses events, we also hook into user handled click & keypresses.
-
-	  ['EventTarget', 'Node'].forEach(function (target) {
-	    var proto = global$2[target] && global$2[target].prototype;
-
-	    if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty('addEventListener')) {
-	      return;
-	    }
-
-	    fill(proto, 'addEventListener', function (original) {
-	      return function (eventName, fn, options) {
-	        if (fn && fn.handleEvent) {
-	          if (eventName === 'click') {
-	            fill(fn, 'handleEvent', function (innerOriginal) {
-	              return function (event) {
-	                domEventHandler('click', triggerHandlers.bind(null, 'dom'))(event);
-	                return innerOriginal.call(this, event);
-	              };
-	            });
-	          }
-
-	          if (eventName === 'keypress') {
-	            fill(fn, 'handleEvent', function (innerOriginal) {
-	              return function (event) {
-	                keypressEventHandler(triggerHandlers.bind(null, 'dom'))(event);
-	                return innerOriginal.call(this, event);
-	              };
-	            });
-	          }
-	        } else {
-	          if (eventName === 'click') {
-	            domEventHandler('click', triggerHandlers.bind(null, 'dom'), true)(this);
-	          }
-
-	          if (eventName === 'keypress') {
-	            keypressEventHandler(triggerHandlers.bind(null, 'dom'))(this);
-	          }
-	        }
-
-	        return original.call(this, eventName, fn, options);
-	      };
-	    });
-	    fill(proto, 'removeEventListener', function (original) {
-	      return function (eventName, fn, options) {
-	        var callback = fn;
-
-	        try {
-	          callback = callback && (callback.__sentry_wrapped__ || callback);
-	        } catch (e) {// ignore, accessing __sentry_wrapped__ will throw in some Selenium environments
-	        }
-
-	        return original.call(this, eventName, callback, options);
-	      };
-	    });
-	  });
-	}
 
 	var debounceDuration = 1000;
 	var debounceTimer = 0;
@@ -9716,122 +9179,6 @@ typeof navigator === "object" && (function () {
 
 	var ERROR_MESSAGE = 'Invalid Dsn';
 	/** The Sentry Dsn, identifying a Sentry instance and project. */
-
-	var Dsn =
-	/** @class */
-	function () {
-	  /** Creates a new Dsn component */
-	  function Dsn(from) {
-	    if (typeof from === 'string') {
-	      this._fromString(from);
-	    } else {
-	      this._fromComponents(from);
-	    }
-
-	    this._validate();
-	  }
-	  /**
-	   * Renders the string representation of this Dsn.
-	   *
-	   * By default, this will render the public representation without the password
-	   * component. To get the deprecated private representation, set `withPassword`
-	   * to true.
-	   *
-	   * @param withPassword When set to true, the password will be included.
-	   */
-
-
-	  Dsn.prototype.toString = function (withPassword) {
-	    if (withPassword === void 0) {
-	      withPassword = false;
-	    } // tslint:disable-next-line:no-this-assignment
-
-
-	    var _a = this,
-	        host = _a.host,
-	        path = _a.path,
-	        pass = _a.pass,
-	        port = _a.port,
-	        projectId = _a.projectId,
-	        protocol = _a.protocol,
-	        user = _a.user;
-
-	    return protocol + "://" + user + (withPassword && pass ? ":" + pass : '') + ("@" + host + (port ? ":" + port : '') + "/" + (path ? path + "/" : path) + projectId);
-	  };
-	  /** Parses a string into this Dsn. */
-
-
-	  Dsn.prototype._fromString = function (str) {
-	    var match = DSN_REGEX.exec(str);
-
-	    if (!match) {
-	      throw new SentryError(ERROR_MESSAGE);
-	    }
-
-	    var _a = __read(match.slice(1), 6),
-	        protocol = _a[0],
-	        user = _a[1],
-	        _b = _a[2],
-	        pass = _b === void 0 ? '' : _b,
-	        host = _a[3],
-	        _c = _a[4],
-	        port = _c === void 0 ? '' : _c,
-	        lastPath = _a[5];
-
-	    var path = '';
-	    var projectId = lastPath;
-	    var split = projectId.split('/');
-
-	    if (split.length > 1) {
-	      path = split.slice(0, -1).join('/');
-	      projectId = split.pop();
-	    }
-
-	    this._fromComponents({
-	      host: host,
-	      pass: pass,
-	      path: path,
-	      projectId: projectId,
-	      port: port,
-	      protocol: protocol,
-	      user: user
-	    });
-	  };
-	  /** Maps Dsn components into this instance. */
-
-
-	  Dsn.prototype._fromComponents = function (components) {
-	    this.protocol = components.protocol;
-	    this.user = components.user;
-	    this.pass = components.pass || '';
-	    this.host = components.host;
-	    this.port = components.port || '';
-	    this.path = components.path || '';
-	    this.projectId = components.projectId;
-	  };
-	  /** Validates this Dsn and throws on error. */
-
-
-	  Dsn.prototype._validate = function () {
-	    var _this = this;
-
-	    ['protocol', 'user', 'host', 'projectId'].forEach(function (component) {
-	      if (!_this[component]) {
-	        throw new SentryError(ERROR_MESSAGE);
-	      }
-	    });
-
-	    if (this.protocol !== 'http' && this.protocol !== 'https') {
-	      throw new SentryError(ERROR_MESSAGE);
-	    }
-
-	    if (this.port && isNaN(parseInt(this.port, 10))) {
-	      throw new SentryError(ERROR_MESSAGE);
-	    }
-	  };
-
-	  return Dsn;
-	}();
 
 	/**
 	 * Holds additional event information. {@link Scope.applyToEvent} will be
@@ -10218,12 +9565,6 @@ typeof navigator === "object" && (function () {
 	 * Retruns the global event processors.
 	 */
 
-	function getGlobalEventProcessors() {
-	  var global = getGlobalObject();
-	  global.__SENTRY__ = global.__SENTRY__ || {};
-	  global.__SENTRY__.globalEventProcessors = global.__SENTRY__.globalEventProcessors || [];
-	  return global.__SENTRY__.globalEventProcessors;
-	}
 	/**
 	 * Add a EventProcessor to be kept globally.
 	 * @param callback EventProcessor to add
@@ -10258,456 +9599,8 @@ typeof navigator === "object" && (function () {
 	var MAX_BREADCRUMBS = 100;
 	/**
 	 * @inheritDoc
-	 */
-
-	var Hub =
-	/** @class */
-	function () {
-	  /**
-	   * Creates a new instance of the hub, will push one {@link Layer} into the
-	   * internal stack on creation.
-	   *
-	   * @param client bound to the hub.
-	   * @param scope bound to the hub.
-	   * @param version number, higher number means higher priority.
-	   */
-	  function Hub(client, scope, _version) {
-	    if (scope === void 0) {
-	      scope = new Scope();
-	    }
-
-	    if (_version === void 0) {
-	      _version = API_VERSION;
-	    }
-
-	    this._version = _version;
-	    /** Is a {@link Layer}[] containing the client and scope */
-
-	    this._stack = [];
-
-	    this._stack.push({
-	      client: client,
-	      scope: scope
-	    });
-	  }
-	  /**
-	   * Internal helper function to call a method on the top client if it exists.
-	   *
-	   * @param method The method to call on the client.
-	   * @param args Arguments to pass to the client function.
-	   */
-
-
-	  Hub.prototype._invokeClient = function (method) {
-	    var _a;
-
-	    var args = [];
-
-	    for (var _i = 1; _i < arguments.length; _i++) {
-	      args[_i - 1] = arguments[_i];
-	    }
-
-	    var top = this.getStackTop();
-
-	    if (top && top.client && top.client[method]) {
-	      (_a = top.client)[method].apply(_a, __spread(args, [top.scope]));
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.isOlderThan = function (version) {
-	    return this._version < version;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.bindClient = function (client) {
-	    var top = this.getStackTop();
-	    top.client = client;
-
-	    if (client && client.setupIntegrations) {
-	      client.setupIntegrations();
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.pushScope = function () {
-	    // We want to clone the content of prev scope
-	    var stack = this.getStack();
-	    var parentScope = stack.length > 0 ? stack[stack.length - 1].scope : undefined;
-	    var scope = Scope.clone(parentScope);
-	    this.getStack().push({
-	      client: this.getClient(),
-	      scope: scope
-	    });
-	    return scope;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.popScope = function () {
-	    return this.getStack().pop() !== undefined;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.withScope = function (callback) {
-	    var scope = this.pushScope();
-
-	    try {
-	      callback(scope);
-	    } finally {
-	      this.popScope();
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.getClient = function () {
-	    return this.getStackTop().client;
-	  };
-	  /** Returns the scope of the top stack. */
-
-
-	  Hub.prototype.getScope = function () {
-	    return this.getStackTop().scope;
-	  };
-	  /** Returns the scope stack for domains or the process. */
-
-
-	  Hub.prototype.getStack = function () {
-	    return this._stack;
-	  };
-	  /** Returns the topmost scope layer in the order domain > local > process. */
-
-
-	  Hub.prototype.getStackTop = function () {
-	    return this._stack[this._stack.length - 1];
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.captureException = function (exception, hint) {
-	    var eventId = this._lastEventId = uuid4();
-	    var finalHint = hint; // If there's no explicit hint provided, mimick the same thing that would happen
-	    // in the minimal itself to create a consistent behavior.
-	    // We don't do this in the client, as it's the lowest level API, and doing this,
-	    // would prevent user from having full control over direct calls.
-
-	    if (!hint) {
-	      var syntheticException = void 0;
-
-	      try {
-	        throw new Error('Sentry syntheticException');
-	      } catch (exception) {
-	        syntheticException = exception;
-	      }
-
-	      finalHint = {
-	        originalException: exception,
-	        syntheticException: syntheticException
-	      };
-	    }
-
-	    this._invokeClient('captureException', exception, _assign({}, finalHint, {
-	      event_id: eventId
-	    }));
-
-	    return eventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.captureMessage = function (message, level, hint) {
-	    var eventId = this._lastEventId = uuid4();
-	    var finalHint = hint; // If there's no explicit hint provided, mimick the same thing that would happen
-	    // in the minimal itself to create a consistent behavior.
-	    // We don't do this in the client, as it's the lowest level API, and doing this,
-	    // would prevent user from having full control over direct calls.
-
-	    if (!hint) {
-	      var syntheticException = void 0;
-
-	      try {
-	        throw new Error(message);
-	      } catch (exception) {
-	        syntheticException = exception;
-	      }
-
-	      finalHint = {
-	        originalException: message,
-	        syntheticException: syntheticException
-	      };
-	    }
-
-	    this._invokeClient('captureMessage', message, level, _assign({}, finalHint, {
-	      event_id: eventId
-	    }));
-
-	    return eventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.captureEvent = function (event, hint) {
-	    var eventId = this._lastEventId = uuid4();
-
-	    this._invokeClient('captureEvent', event, _assign({}, hint, {
-	      event_id: eventId
-	    }));
-
-	    return eventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.lastEventId = function () {
-	    return this._lastEventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.addBreadcrumb = function (breadcrumb, hint) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope || !top.client) {
-	      return;
-	    }
-
-	    var _a = top.client.getOptions && top.client.getOptions() || {},
-	        _b = _a.beforeBreadcrumb,
-	        beforeBreadcrumb = _b === void 0 ? null : _b,
-	        _c = _a.maxBreadcrumbs,
-	        maxBreadcrumbs = _c === void 0 ? DEFAULT_BREADCRUMBS : _c;
-
-	    if (maxBreadcrumbs <= 0) {
-	      return;
-	    }
-
-	    var timestamp = timestampWithMs();
-
-	    var mergedBreadcrumb = _assign({
-	      timestamp: timestamp
-	    }, breadcrumb);
-
-	    var finalBreadcrumb = beforeBreadcrumb ? consoleSandbox(function () {
-	      return beforeBreadcrumb(mergedBreadcrumb, hint);
-	    }) : mergedBreadcrumb;
-
-	    if (finalBreadcrumb === null) {
-	      return;
-	    }
-
-	    top.scope.addBreadcrumb(finalBreadcrumb, Math.min(maxBreadcrumbs, MAX_BREADCRUMBS));
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.setUser = function (user) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope) {
-	      return;
-	    }
-
-	    top.scope.setUser(user);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.setTags = function (tags) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope) {
-	      return;
-	    }
-
-	    top.scope.setTags(tags);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.setExtras = function (extras) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope) {
-	      return;
-	    }
-
-	    top.scope.setExtras(extras);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.setTag = function (key, value) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope) {
-	      return;
-	    }
-
-	    top.scope.setTag(key, value);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.setExtra = function (key, extra) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope) {
-	      return;
-	    }
-
-	    top.scope.setExtra(key, extra);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.setContext = function (name, context) {
-	    var top = this.getStackTop();
-
-	    if (!top.scope) {
-	      return;
-	    }
-
-	    top.scope.setContext(name, context);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.configureScope = function (callback) {
-	    var top = this.getStackTop();
-
-	    if (top.scope && top.client) {
-	      callback(top.scope);
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.run = function (callback) {
-	    var oldHub = makeMain(this);
-
-	    try {
-	      callback(this);
-	    } finally {
-	      makeMain(oldHub);
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.getIntegration = function (integration) {
-	    var client = this.getClient();
-
-	    if (!client) {
-	      return null;
-	    }
-
-	    try {
-	      return client.getIntegration(integration);
-	    } catch (_oO) {
-	      logger.warn("Cannot retrieve integration " + integration.id + " from the current Hub");
-	      return null;
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.startSpan = function (spanOrSpanContext, forceNoChild) {
-	    if (forceNoChild === void 0) {
-	      forceNoChild = false;
-	    }
-
-	    return this._callExtensionMethod('startSpan', spanOrSpanContext, forceNoChild);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  Hub.prototype.traceHeaders = function () {
-	    return this._callExtensionMethod('traceHeaders');
-	  };
-	  /**
-	   * Calls global extension method and binding current instance to the function call
-	   */
-	  // @ts-ignore
-
-
-	  Hub.prototype._callExtensionMethod = function (method) {
-	    var args = [];
-
-	    for (var _i = 1; _i < arguments.length; _i++) {
-	      args[_i - 1] = arguments[_i];
-	    }
-
-	    var carrier = getMainCarrier();
-	    var sentry = carrier.__SENTRY__; // tslint:disable-next-line: strict-type-predicates
-
-	    if (sentry && sentry.extensions && typeof sentry.extensions[method] === 'function') {
-	      return sentry.extensions[method].apply(this, args);
-	    }
-
-	    logger.warn("Extension method " + method + " couldn't be found, doing nothing.");
-	  };
-
-	  return Hub;
-	}();
 	/** Returns the global shim registry. */
 
-	function getMainCarrier() {
-	  var carrier = getGlobalObject();
-	  carrier.__SENTRY__ = carrier.__SENTRY__ || {
-	    extensions: {},
-	    hub: undefined
-	  };
-	  return carrier;
-	}
 	/**
 	 * Replaces the current main hub with the passed one on the global object
 	 *
@@ -10749,49 +9642,12 @@ typeof navigator === "object" && (function () {
 	 * @returns discovered hub
 	 */
 
-	function getHubFromActiveDomain(registry) {
-	  try {
-	    var property = 'domain';
-	    var carrier = getMainCarrier();
-	    var sentry = carrier.__SENTRY__; // tslint:disable-next-line: strict-type-predicates
-
-	    if (!sentry || !sentry.extensions || !sentry.extensions[property]) {
-	      return getHubFromCarrier(registry);
-	    }
-
-	    var domain = sentry.extensions[property];
-	    var activeDomain = domain.active; // If there no active domain, just return global hub
-
-	    if (!activeDomain) {
-	      return getHubFromCarrier(registry);
-	    } // If there's no hub on current domain, or its an old API, assign a new one
-
-
-	    if (!hasHubOnCarrier(activeDomain) || getHubFromCarrier(activeDomain).isOlderThan(API_VERSION)) {
-	      var registryHubTopStack = getHubFromCarrier(registry).getStackTop();
-	      setHubOnCarrier(activeDomain, new Hub(registryHubTopStack.client, Scope.clone(registryHubTopStack.scope)));
-	    } // Return hub that lives on a domain
-
-
-	    return getHubFromCarrier(activeDomain);
-	  } catch (_Oo) {
-	    // Return hub that lives on a global object
-	    return getHubFromCarrier(registry);
-	  }
-	}
 	/**
 	 * This will tell whether a carrier has a hub on it or not
 	 * @param carrier object
 	 */
 
 
-	function hasHubOnCarrier(carrier) {
-	  if (carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub) {
-	    return true;
-	  }
-
-	  return false;
-	}
 	/**
 	 * This will create a new {@link Hub} and add to the passed object on
 	 * __SENTRY__.hub.
@@ -10800,30 +9656,12 @@ typeof navigator === "object" && (function () {
 	 */
 
 
-	function getHubFromCarrier(carrier) {
-	  if (carrier && carrier.__SENTRY__ && carrier.__SENTRY__.hub) {
-	    return carrier.__SENTRY__.hub;
-	  }
-
-	  carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-	  carrier.__SENTRY__.hub = new Hub();
-	  return carrier.__SENTRY__.hub;
-	}
 	/**
 	 * This will set passed {@link Hub} on the passed object's __SENTRY__.hub attribute
 	 * @param carrier object
 	 * @param hub Hub
 	 */
 
-	function setHubOnCarrier(carrier, hub) {
-	  if (!carrier) {
-	    return false;
-	  }
-
-	  carrier.__SENTRY__ = carrier.__SENTRY__ || {};
-	  carrier.__SENTRY__.hub = hub;
-	  return true;
-	}
 
 	/**
 	 * This calls a function on the current hub.
@@ -10855,20 +9693,6 @@ typeof navigator === "object" && (function () {
 	 */
 
 
-	function captureException(exception) {
-	  var syntheticException;
-
-	  try {
-	    throw new Error('Sentry syntheticException');
-	  } catch (exception) {
-	    syntheticException = exception;
-	  }
-
-	  return callOnHub('captureException', exception, {
-	    originalException: exception,
-	    syntheticException: syntheticException
-	  });
-	}
 	/**
 	 * Creates a new scope with and executes the given operation within.
 	 * The scope is automatically removed once the operation
@@ -10883,178 +9707,12 @@ typeof navigator === "object" && (function () {
 	 * @param callback that will be enclosed into push/popScope.
 	 */
 
-	function withScope(callback) {
-	  callOnHub('withScope', callback);
-	}
-
-	var SENTRY_API_VERSION = '7';
-	/** Helper class to provide urls to different Sentry endpoints. */
-
-	var API =
-	/** @class */
-	function () {
-	  /** Create a new instance of API */
-	  function API(dsn) {
-	    this.dsn = dsn;
-	    this._dsnObject = new Dsn(dsn);
-	  }
-	  /** Returns the Dsn object. */
-
-
-	  API.prototype.getDsn = function () {
-	    return this._dsnObject;
-	  };
-	  /** Returns a string with auth headers in the url to the store endpoint. */
-
-
-	  API.prototype.getStoreEndpoint = function () {
-	    return "" + this._getBaseUrl() + this.getStoreEndpointPath();
-	  };
-	  /** Returns the store endpoint with auth added in url encoded. */
-
-
-	  API.prototype.getStoreEndpointWithUrlEncodedAuth = function () {
-	    var dsn = this._dsnObject;
-	    var auth = {
-	      sentry_key: dsn.user,
-	      sentry_version: SENTRY_API_VERSION
-	    }; // Auth is intentionally sent as part of query string (NOT as custom HTTP header)
-	    // to avoid preflight CORS requests
-
-	    return this.getStoreEndpoint() + "?" + urlEncode(auth);
-	  };
-	  /** Returns the base path of the url including the port. */
-
-
-	  API.prototype._getBaseUrl = function () {
-	    var dsn = this._dsnObject;
-	    var protocol = dsn.protocol ? dsn.protocol + ":" : '';
-	    var port = dsn.port ? ":" + dsn.port : '';
-	    return protocol + "//" + dsn.host + port;
-	  };
-	  /** Returns only the path component for the store endpoint. */
-
-
-	  API.prototype.getStoreEndpointPath = function () {
-	    var dsn = this._dsnObject;
-	    return (dsn.path ? "/" + dsn.path : '') + "/api/" + dsn.projectId + "/store/";
-	  };
-	  /** Returns an object that can be used in request headers. */
-
-
-	  API.prototype.getRequestHeaders = function (clientName, clientVersion) {
-	    var dsn = this._dsnObject;
-	    var header = ["Sentry sentry_version=" + SENTRY_API_VERSION];
-	    header.push("sentry_client=" + clientName + "/" + clientVersion);
-	    header.push("sentry_key=" + dsn.user);
-
-	    if (dsn.pass) {
-	      header.push("sentry_secret=" + dsn.pass);
-	    }
-
-	    return {
-	      'Content-Type': 'application/json',
-	      'X-Sentry-Auth': header.join(', ')
-	    };
-	  };
-	  /** Returns the url to the report dialog endpoint. */
-
-
-	  API.prototype.getReportDialogEndpoint = function (dialogOptions) {
-	    if (dialogOptions === void 0) {
-	      dialogOptions = {};
-	    }
-
-	    var dsn = this._dsnObject;
-	    var endpoint = "" + this._getBaseUrl() + (dsn.path ? "/" + dsn.path : '') + "/api/embed/error-page/";
-	    var encodedOptions = [];
-	    encodedOptions.push("dsn=" + dsn.toString());
-
-	    for (var key in dialogOptions) {
-	      if (key === 'user') {
-	        if (!dialogOptions.user) {
-	          continue;
-	        }
-
-	        if (dialogOptions.user.name) {
-	          encodedOptions.push("name=" + encodeURIComponent(dialogOptions.user.name));
-	        }
-
-	        if (dialogOptions.user.email) {
-	          encodedOptions.push("email=" + encodeURIComponent(dialogOptions.user.email));
-	        }
-	      } else {
-	        encodedOptions.push(encodeURIComponent(key) + "=" + encodeURIComponent(dialogOptions[key]));
-	      }
-	    }
-
-	    if (encodedOptions.length) {
-	      return endpoint + "?" + encodedOptions.join('&');
-	    }
-
-	    return endpoint;
-	  };
-
-	  return API;
-	}();
 
 	var installedIntegrations = [];
 	/** Gets integration to install */
 
-	function getIntegrationsToSetup(options) {
-	  var defaultIntegrations = options.defaultIntegrations && __spread(options.defaultIntegrations) || [];
-	  var userIntegrations = options.integrations;
-	  var integrations = [];
-
-	  if (Array.isArray(userIntegrations)) {
-	    var userIntegrationsNames_1 = userIntegrations.map(function (i) {
-	      return i.name;
-	    });
-	    var pickedIntegrationsNames_1 = []; // Leave only unique default integrations, that were not overridden with provided user integrations
-
-	    defaultIntegrations.forEach(function (defaultIntegration) {
-	      if (userIntegrationsNames_1.indexOf(defaultIntegration.name) === -1 && pickedIntegrationsNames_1.indexOf(defaultIntegration.name) === -1) {
-	        integrations.push(defaultIntegration);
-	        pickedIntegrationsNames_1.push(defaultIntegration.name);
-	      }
-	    }); // Don't add same user integration twice
-
-	    userIntegrations.forEach(function (userIntegration) {
-	      if (pickedIntegrationsNames_1.indexOf(userIntegration.name) === -1) {
-	        integrations.push(userIntegration);
-	        pickedIntegrationsNames_1.push(userIntegration.name);
-	      }
-	    });
-	  } else if (typeof userIntegrations === 'function') {
-	    integrations = userIntegrations(defaultIntegrations);
-	    integrations = Array.isArray(integrations) ? integrations : [integrations];
-	  } else {
-	    integrations = __spread(defaultIntegrations);
-	  } // Make sure that if present, `Debug` integration will always run last
-
-
-	  var integrationsNames = integrations.map(function (i) {
-	    return i.name;
-	  });
-	  var alwaysLastToRun = 'Debug';
-
-	  if (integrationsNames.indexOf(alwaysLastToRun) !== -1) {
-	    integrations.push.apply(integrations, __spread(integrations.splice(integrationsNames.indexOf(alwaysLastToRun), 1)));
-	  }
-
-	  return integrations;
-	}
 	/** Setup given integration */
 
-	function setupIntegration(integration) {
-	  if (installedIntegrations.indexOf(integration.name) !== -1) {
-	    return;
-	  }
-
-	  integration.setupOnce(addGlobalEventProcessor, getCurrentHub);
-	  installedIntegrations.push(integration.name);
-	  logger.log("Integration installed: " + integration.name);
-	}
 	/**
 	 * Given a list of integration instances this installs them all. When `withDefaults` is set to `true` then all default
 	 * integrations are added unless they were already provided before.
@@ -11062,14 +9720,6 @@ typeof navigator === "object" && (function () {
 	 * @param withDefault should enable default integrations
 	 */
 
-	function setupIntegrations(options) {
-	  var integrations = {};
-	  getIntegrationsToSetup(options).forEach(function (integration) {
-	    integrations[integration.name] = integration;
-	    setupIntegration(integration);
-	  });
-	  return integrations;
-	}
 
 	/**
 	 * Base implementation for all JavaScript SDK clients.
@@ -11104,532 +9754,13 @@ typeof navigator === "object" && (function () {
 	 * }
 	 */
 
-	var BaseClient =
-	/** @class */
-	function () {
-	  /**
-	   * Initializes this client instance.
-	   *
-	   * @param backendClass A constructor function to create the backend.
-	   * @param options Options for the client.
-	   */
-	  function BaseClient(backendClass, options) {
-	    /** Array of used integrations. */
-	    this._integrations = {};
-	    /** Is the client still processing a call? */
-
-	    this._processing = false;
-	    this._backend = new backendClass(options);
-	    this._options = options;
-
-	    if (options.dsn) {
-	      this._dsn = new Dsn(options.dsn);
-	    }
-	  }
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.captureException = function (exception, hint, scope) {
-	    var _this = this;
-
-	    var eventId = hint && hint.event_id;
-	    this._processing = true;
-
-	    this._getBackend().eventFromException(exception, hint).then(function (event) {
-	      return _this._processEvent(event, hint, scope);
-	    }).then(function (finalEvent) {
-	      // We need to check for finalEvent in case beforeSend returned null
-	      eventId = finalEvent && finalEvent.event_id;
-	      _this._processing = false;
-	    }).then(null, function (reason) {
-	      logger.error(reason);
-	      _this._processing = false;
-	    });
-
-	    return eventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.captureMessage = function (message, level, hint, scope) {
-	    var _this = this;
-
-	    var eventId = hint && hint.event_id;
-	    this._processing = true;
-	    var promisedEvent = isPrimitive(message) ? this._getBackend().eventFromMessage("" + message, level, hint) : this._getBackend().eventFromException(message, hint);
-	    promisedEvent.then(function (event) {
-	      return _this._processEvent(event, hint, scope);
-	    }).then(function (finalEvent) {
-	      // We need to check for finalEvent in case beforeSend returned null
-	      eventId = finalEvent && finalEvent.event_id;
-	      _this._processing = false;
-	    }).then(null, function (reason) {
-	      logger.error(reason);
-	      _this._processing = false;
-	    });
-	    return eventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.captureEvent = function (event, hint, scope) {
-	    var _this = this;
-
-	    var eventId = hint && hint.event_id;
-	    this._processing = true;
-
-	    this._processEvent(event, hint, scope).then(function (finalEvent) {
-	      // We need to check for finalEvent in case beforeSend returned null
-	      eventId = finalEvent && finalEvent.event_id;
-	      _this._processing = false;
-	    }).then(null, function (reason) {
-	      logger.error(reason);
-	      _this._processing = false;
-	    });
-
-	    return eventId;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.getDsn = function () {
-	    return this._dsn;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.getOptions = function () {
-	    return this._options;
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.flush = function (timeout) {
-	    var _this = this;
-
-	    return this._isClientProcessing(timeout).then(function (status) {
-	      clearInterval(status.interval);
-	      return _this._getBackend().getTransport().close(timeout).then(function (transportFlushed) {
-	        return status.ready && transportFlushed;
-	      });
-	    });
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.close = function (timeout) {
-	    var _this = this;
-
-	    return this.flush(timeout).then(function (result) {
-	      _this.getOptions().enabled = false;
-	      return result;
-	    });
-	  };
-	  /**
-	   * Sets up the integrations
-	   */
-
-
-	  BaseClient.prototype.setupIntegrations = function () {
-	    if (this._isEnabled()) {
-	      this._integrations = setupIntegrations(this._options);
-	    }
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseClient.prototype.getIntegration = function (integration) {
-	    try {
-	      return this._integrations[integration.id] || null;
-	    } catch (_oO) {
-	      logger.warn("Cannot retrieve integration " + integration.id + " from the current Client");
-	      return null;
-	    }
-	  };
-	  /** Waits for the client to be done with processing. */
-
-
-	  BaseClient.prototype._isClientProcessing = function (timeout) {
-	    var _this = this;
-
-	    return new SyncPromise(function (resolve) {
-	      var ticked = 0;
-	      var tick = 1;
-	      var interval = 0;
-	      clearInterval(interval);
-	      interval = setInterval(function () {
-	        if (!_this._processing) {
-	          resolve({
-	            interval: interval,
-	            ready: true
-	          });
-	        } else {
-	          ticked += tick;
-
-	          if (timeout && ticked >= timeout) {
-	            resolve({
-	              interval: interval,
-	              ready: false
-	            });
-	          }
-	        }
-	      }, tick);
-	    });
-	  };
-	  /** Returns the current backend. */
-
-
-	  BaseClient.prototype._getBackend = function () {
-	    return this._backend;
-	  };
-	  /** Determines whether this SDK is enabled and a valid Dsn is present. */
-
-
-	  BaseClient.prototype._isEnabled = function () {
-	    return this.getOptions().enabled !== false && this._dsn !== undefined;
-	  };
-	  /**
-	   * Adds common information to events.
-	   *
-	   * The information includes release and environment from `options`,
-	   * breadcrumbs and context (extra, tags and user) from the scope.
-	   *
-	   * Information that is already present in the event is never overwritten. For
-	   * nested objects, such as the context, keys are merged.
-	   *
-	   * @param event The original event.
-	   * @param hint May contain additional informartion about the original exception.
-	   * @param scope A scope containing event metadata.
-	   * @returns A new event with more information.
-	   */
-
-
-	  BaseClient.prototype._prepareEvent = function (event, scope, hint) {
-	    var _this = this;
-
-	    var _a = this.getOptions(),
-	        environment = _a.environment,
-	        release = _a.release,
-	        dist = _a.dist,
-	        _b = _a.maxValueLength,
-	        maxValueLength = _b === void 0 ? 250 : _b,
-	        _c = _a.normalizeDepth,
-	        normalizeDepth = _c === void 0 ? 3 : _c;
-
-	    var prepared = _assign({}, event);
-
-	    if (prepared.environment === undefined && environment !== undefined) {
-	      prepared.environment = environment;
-	    }
-
-	    if (prepared.release === undefined && release !== undefined) {
-	      prepared.release = release;
-	    }
-
-	    if (prepared.dist === undefined && dist !== undefined) {
-	      prepared.dist = dist;
-	    }
-
-	    if (prepared.message) {
-	      prepared.message = truncate(prepared.message, maxValueLength);
-	    }
-
-	    var exception = prepared.exception && prepared.exception.values && prepared.exception.values[0];
-
-	    if (exception && exception.value) {
-	      exception.value = truncate(exception.value, maxValueLength);
-	    }
-
-	    var request = prepared.request;
-
-	    if (request && request.url) {
-	      request.url = truncate(request.url, maxValueLength);
-	    }
-
-	    if (prepared.event_id === undefined) {
-	      prepared.event_id = hint && hint.event_id ? hint.event_id : uuid4();
-	    }
-
-	    this._addIntegrations(prepared.sdk); // We prepare the result here with a resolved Event.
-
-
-	    var result = SyncPromise.resolve(prepared); // This should be the last thing called, since we want that
-	    // {@link Hub.addEventProcessor} gets the finished prepared event.
-
-	    if (scope) {
-	      // In case we have a hub we reassign it.
-	      result = scope.applyToEvent(prepared, hint);
-	    }
-
-	    return result.then(function (evt) {
-	      // tslint:disable-next-line:strict-type-predicates
-	      if (typeof normalizeDepth === 'number' && normalizeDepth > 0) {
-	        return _this._normalizeEvent(evt, normalizeDepth);
-	      }
-
-	      return evt;
-	    });
-	  };
-	  /**
-	   * Applies `normalize` function on necessary `Event` attributes to make them safe for serialization.
-	   * Normalized keys:
-	   * - `breadcrumbs.data`
-	   * - `user`
-	   * - `contexts`
-	   * - `extra`
-	   * @param event Event
-	   * @returns Normalized event
-	   */
-
-
-	  BaseClient.prototype._normalizeEvent = function (event, depth) {
-	    if (!event) {
-	      return null;
-	    } // tslint:disable:no-unsafe-any
-
-
-	    return _assign({}, event, event.breadcrumbs && {
-	      breadcrumbs: event.breadcrumbs.map(function (b) {
-	        return _assign({}, b, b.data && {
-	          data: normalize$1(b.data, depth)
-	        });
-	      })
-	    }, event.user && {
-	      user: normalize$1(event.user, depth)
-	    }, event.contexts && {
-	      contexts: normalize$1(event.contexts, depth)
-	    }, event.extra && {
-	      extra: normalize$1(event.extra, depth)
-	    });
-	  };
-	  /**
-	   * This function adds all used integrations to the SDK info in the event.
-	   * @param sdkInfo The sdkInfo of the event that will be filled with all integrations.
-	   */
-
-
-	  BaseClient.prototype._addIntegrations = function (sdkInfo) {
-	    var integrationsArray = Object.keys(this._integrations);
-
-	    if (sdkInfo && integrationsArray.length > 0) {
-	      sdkInfo.integrations = integrationsArray;
-	    }
-	  };
-	  /**
-	   * Processes an event (either error or message) and sends it to Sentry.
-	   *
-	   * This also adds breadcrumbs and context information to the event. However,
-	   * platform specific meta data (such as the User's IP address) must be added
-	   * by the SDK implementor.
-	   *
-	   *
-	   * @param event The event to send to Sentry.
-	   * @param hint May contain additional informartion about the original exception.
-	   * @param scope A scope containing event metadata.
-	   * @returns A SyncPromise that resolves with the event or rejects in case event was/will not be send.
-	   */
-
-
-	  BaseClient.prototype._processEvent = function (event, hint, scope) {
-	    var _this = this;
-
-	    var _a = this.getOptions(),
-	        beforeSend = _a.beforeSend,
-	        sampleRate = _a.sampleRate;
-
-	    if (!this._isEnabled()) {
-	      return SyncPromise.reject('SDK not enabled, will not send event.');
-	    } // 1.0 === 100% events are sent
-	    // 0.0 === 0% events are sent
-
-
-	    if (typeof sampleRate === 'number' && Math.random() > sampleRate) {
-	      return SyncPromise.reject('This event has been sampled, will not send event.');
-	    }
-
-	    return new SyncPromise(function (resolve, reject) {
-	      _this._prepareEvent(event, scope, hint).then(function (prepared) {
-	        if (prepared === null) {
-	          reject('An event processor returned null, will not send event.');
-	          return;
-	        }
-
-	        var finalEvent = prepared;
-	        var isInternalException = hint && hint.data && hint.data.__sentry__ === true;
-
-	        if (isInternalException || !beforeSend) {
-	          _this._getBackend().sendEvent(finalEvent);
-
-	          resolve(finalEvent);
-	          return;
-	        }
-
-	        var beforeSendResult = beforeSend(prepared, hint); // tslint:disable-next-line:strict-type-predicates
-
-	        if (typeof beforeSendResult === 'undefined') {
-	          logger.error('`beforeSend` method has to return `null` or a valid event.');
-	        } else if (isThenable$1(beforeSendResult)) {
-	          _this._handleAsyncBeforeSend(beforeSendResult, resolve, reject);
-	        } else {
-	          finalEvent = beforeSendResult;
-
-	          if (finalEvent === null) {
-	            logger.log('`beforeSend` returned `null`, will not send event.');
-	            resolve(null);
-	            return;
-	          } // From here on we are really async
-
-
-	          _this._getBackend().sendEvent(finalEvent);
-
-	          resolve(finalEvent);
-	        }
-	      }).then(null, function (reason) {
-	        _this.captureException(reason, {
-	          data: {
-	            __sentry__: true
-	          },
-	          originalException: reason
-	        });
-
-	        reject("Event processing pipeline threw an error, original event will not be sent. Details have been sent as a new event.\nReason: " + reason);
-	      });
-	    });
-	  };
-	  /**
-	   * Resolves before send Promise and calls resolve/reject on parent SyncPromise.
-	   */
-
-
-	  BaseClient.prototype._handleAsyncBeforeSend = function (beforeSend, resolve, reject) {
-	    var _this = this;
-
-	    beforeSend.then(function (processedEvent) {
-	      if (processedEvent === null) {
-	        reject('`beforeSend` returned `null`, will not send event.');
-	        return;
-	      } // From here on we are really async
-
-
-	      _this._getBackend().sendEvent(processedEvent);
-
-	      resolve(processedEvent);
-	    }).then(null, function (e) {
-	      reject("beforeSend rejected with " + e);
-	    });
-	  };
-
-	  return BaseClient;
-	}();
-
 	/** Noop transport */
 
-	var NoopTransport =
-	/** @class */
-	function () {
-	  function NoopTransport() {}
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  NoopTransport.prototype.sendEvent = function (_) {
-	    return SyncPromise.resolve({
-	      reason: "NoopTransport: Event has been skipped because no Dsn is configured.",
-	      status: Status.Skipped
-	    });
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  NoopTransport.prototype.close = function (_) {
-	    return SyncPromise.resolve(true);
-	  };
-
-	  return NoopTransport;
-	}();
 
 	/**
 	 * This is the base implemention of a Backend.
 	 * @hidden
 	 */
-
-	var BaseBackend =
-	/** @class */
-	function () {
-	  /** Creates a new backend instance. */
-	  function BaseBackend(options) {
-	    this._options = options;
-
-	    if (!this._options.dsn) {
-	      logger.warn('No DSN provided, backend will not do anything.');
-	    }
-
-	    this._transport = this._setupTransport();
-	  }
-	  /**
-	   * Sets up the transport so it can be used later to send requests.
-	   */
-
-
-	  BaseBackend.prototype._setupTransport = function () {
-	    return new NoopTransport();
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseBackend.prototype.eventFromException = function (_exception, _hint) {
-	    throw new SentryError('Backend has to implement `eventFromException` method');
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseBackend.prototype.eventFromMessage = function (_message, _level, _hint) {
-	    throw new SentryError('Backend has to implement `eventFromMessage` method');
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseBackend.prototype.sendEvent = function (event) {
-	    this._transport.sendEvent(event).then(null, function (reason) {
-	      logger.error("Error while sending event: " + reason);
-	    });
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BaseBackend.prototype.getTransport = function () {
-	    return this._transport;
-	  };
-
-	  return BaseBackend;
-	}();
 
 	/**
 	 * Internal function to create a new SDK client instance. The client is
@@ -11639,56 +9770,6 @@ typeof navigator === "object" && (function () {
 	 * @param options Options to pass to the client.
 	 */
 
-	function initAndBind(clientClass, options) {
-	  if (options.debug === true) {
-	    logger.enable();
-	  }
-
-	  var hub = getCurrentHub();
-	  var client = new clientClass(options);
-	  hub.bindClient(client);
-	}
-
-	var originalFunctionToString;
-	/** Patch toString calls to return proper name for wrapped functions */
-
-	var FunctionToString =
-	/** @class */
-	function () {
-	  function FunctionToString() {
-	    /**
-	     * @inheritDoc
-	     */
-	    this.name = FunctionToString.id;
-	  }
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  FunctionToString.prototype.setupOnce = function () {
-	    originalFunctionToString = Function.prototype.toString;
-
-	    Function.prototype.toString = function () {
-	      var args = [];
-
-	      for (var _i = 0; _i < arguments.length; _i++) {
-	        args[_i] = arguments[_i];
-	      }
-
-	      var context = this.__sentry_original__ || this; // tslint:disable-next-line:no-unsafe-any
-
-	      return originalFunctionToString.apply(context, args);
-	    };
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  FunctionToString.id = 'FunctionToString';
-	  return FunctionToString;
-	}();
 
 	var $some$1 = arrayIteration.some;
 
@@ -11697,13 +9778,6 @@ typeof navigator === "object" && (function () {
 	var STRICT_METHOD$4 = arrayMethodIsStrict('some');
 	var USES_TO_LENGTH$8 = arrayMethodUsesToLength('some');
 
-	// `Array.prototype.some` method
-	// https://tc39.github.io/ecma262/#sec-array.prototype.some
-	_export({ target: 'Array', proto: true, forced: !STRICT_METHOD$4 || !USES_TO_LENGTH$8 }, {
-	  some: function some(callbackfn /* , thisArg */) {
-	    return $some$1(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-	  }
-	});
 
 	// this is the result of a script being pulled in from an external domain and CORS.
 
@@ -11757,47 +9831,6 @@ typeof navigator === "object" && (function () {
 	  /** JSDoc */
 
 
-	  InboundFilters.prototype._shouldDropEvent = function (event, options) {
-	    if (this._isSentryError(event, options)) {
-	      logger.warn("Event dropped due to being internal Sentry Error.\nEvent: " + getEventDescription(event));
-	      return true;
-	    }
-
-	    if (this._isIgnoredError(event, options)) {
-	      logger.warn("Event dropped due to being matched by `ignoreErrors` option.\nEvent: " + getEventDescription(event));
-	      return true;
-	    }
-
-	    if (this._isBlacklistedUrl(event, options)) {
-	      logger.warn("Event dropped due to being matched by `blacklistUrls` option.\nEvent: " + getEventDescription(event) + ".\nUrl: " + this._getEventFilterUrl(event));
-	      return true;
-	    }
-
-	    if (!this._isWhitelistedUrl(event, options)) {
-	      logger.warn("Event dropped due to not being matched by `whitelistUrls` option.\nEvent: " + getEventDescription(event) + ".\nUrl: " + this._getEventFilterUrl(event));
-	      return true;
-	    }
-
-	    return false;
-	  };
-	  /** JSDoc */
-
-
-	  InboundFilters.prototype._isSentryError = function (event, options) {
-	    if (options === void 0) {
-	      options = {};
-	    }
-
-	    if (!options.ignoreInternal) {
-	      return false;
-	    }
-
-	    try {
-	      return event && event.exception && event.exception.values && event.exception.values[0] && event.exception.values[0].type === 'SentryError' || false;
-	    } catch (_oO) {
-	      return false;
-	    }
-	  };
 	  /** JSDoc */
 
 
@@ -12239,9 +10272,6 @@ typeof navigator === "object" && (function () {
 	  } // If stack ends with one of our internal API calls, remove it (ends, meaning it's the bottom of the stack - aka top-most call)
 
 
-	  if (lastFrameFunction.indexOf('sentryWrapped') !== -1) {
-	    localStack = localStack.slice(0, -1);
-	  } // The frame where the crash happened, should be the last entry in the array
 
 
 	  return localStack.map(function (frame) {
@@ -12359,10 +10389,6 @@ typeof navigator === "object" && (function () {
 	   * @inheritDoc
 	   */
 
-
-	  BaseTransport.prototype.sendEvent = function (_) {
-	    throw new SentryError('Transport Class has to implement `sendEvent` method');
-	  };
 	  /**
 	   * @inheritDoc
 	   */
@@ -12523,86 +10549,6 @@ typeof navigator === "object" && (function () {
 	 * @hidden
 	 */
 
-	var BrowserBackend =
-	/** @class */
-	function (_super) {
-	  __extends(BrowserBackend, _super);
-
-	  function BrowserBackend() {
-	    return _super !== null && _super.apply(this, arguments) || this;
-	  }
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BrowserBackend.prototype._setupTransport = function () {
-	    if (!this._options.dsn) {
-	      // We return the noop transport here in case there is no Dsn.
-	      return _super.prototype._setupTransport.call(this);
-	    }
-
-	    var transportOptions = _assign({}, this._options.transportOptions, {
-	      dsn: this._options.dsn
-	    });
-
-	    if (this._options.transport) {
-	      return new this._options.transport(transportOptions);
-	    }
-
-	    if (supportsFetch()) {
-	      return new FetchTransport(transportOptions);
-	    }
-
-	    return new XHRTransport(transportOptions);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BrowserBackend.prototype.eventFromException = function (exception, hint) {
-	    var syntheticException = hint && hint.syntheticException || undefined;
-	    var event = eventFromUnknownInput(exception, syntheticException, {
-	      attachStacktrace: this._options.attachStacktrace
-	    });
-	    addExceptionMechanism(event, {
-	      handled: true,
-	      type: 'generic'
-	    });
-	    event.level = Severity.Error;
-
-	    if (hint && hint.event_id) {
-	      event.event_id = hint.event_id;
-	    }
-
-	    return SyncPromise.resolve(event);
-	  };
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BrowserBackend.prototype.eventFromMessage = function (message, level, hint) {
-	    if (level === void 0) {
-	      level = Severity.Info;
-	    }
-
-	    var syntheticException = hint && hint.syntheticException || undefined;
-	    var event = eventFromString(message, syntheticException, {
-	      attachStacktrace: this._options.attachStacktrace
-	    });
-	    event.level = level;
-
-	    if (hint && hint.event_id) {
-	      event.event_id = hint.event_id;
-	    }
-
-	    return SyncPromise.resolve(event);
-	  };
-
-	  return BrowserBackend;
-	}(BaseBackend);
 
 	var SDK_NAME = 'namasteybharat.github.javascript.browser';
 	var SDK_VERSION = '5.15.5';
@@ -12613,91 +10559,6 @@ typeof navigator === "object" && (function () {
 	 * @see BrowserOptions for documentation on configuration options.
 	 * @see SentryClient for usage documentation.
 	 */
-
-	var BrowserClient =
-	/** @class */
-	function (_super) {
-	  __extends(BrowserClient, _super);
-	  /**
-	   * Creates a new Browser SDK instance.
-	   *
-	   * @param options Configuration options for this SDK.
-	   */
-
-
-	  function BrowserClient(options) {
-	    if (options === void 0) {
-	      options = {};
-	    }
-
-	    return _super.call(this, BrowserBackend, options) || this;
-	  }
-	  /**
-	   * @inheritDoc
-	   */
-
-
-	  BrowserClient.prototype._prepareEvent = function (event, scope, hint) {
-	    event.platform = event.platform || 'javascript';
-	    event.sdk = _assign({}, event.sdk, {
-	      name: SDK_NAME,
-	      packages: __spread(event.sdk && event.sdk.packages || [], [{
-	        name: 'npm:@namasteybharat.github/browser',
-	        version: SDK_VERSION
-	      }]),
-	      version: SDK_VERSION
-	    });
-	    return _super.prototype._prepareEvent.call(this, event, scope, hint);
-	  };
-	  /**
-	   * Show a report dialog to the user to send feedback to a specific event.
-	   *
-	   * @param options Set individual options for the dialog
-	   */
-
-
-	  BrowserClient.prototype.showReportDialog = function (options) {
-	    if (options === void 0) {
-	      options = {};
-	    } // doesn't work without a document (React Native)
-
-
-	    var document = getGlobalObject().document;
-
-	    if (!document) {
-	      return;
-	    }
-
-	    if (!this._isEnabled()) {
-	      logger.error('Trying to call showReportDialog with Sentry Client is disabled');
-	      return;
-	    }
-
-	    var dsn = options.dsn || this.getDsn();
-
-	    if (!options.eventId) {
-	      logger.error('Missing `eventId` option in showReportDialog call');
-	      return;
-	    }
-
-	    if (!dsn) {
-	      logger.error('Missing `Dsn` option in showReportDialog call');
-	      return;
-	    }
-
-	    var script = document.createElement('script');
-	    script.async = true;
-	    script.src = new API(dsn).getReportDialogEndpoint(options);
-
-	    if (options.onLoad) {
-	      script.onload = options.onLoad;
-	    }
-
-	    (document.head || document.body).appendChild(script);
-	  };
-
-	  return BrowserClient;
-	}(BaseClient);
 
 	var ignoreOnError = 0;
 	/**
@@ -12727,127 +10588,6 @@ typeof navigator === "object" && (function () {
 	 * @hidden
 	 */
 
-	function wrap$1(fn, options, before) {
-	  if (options === void 0) {
-	    options = {};
-	  } // tslint:disable-next-line:strict-type-predicates
-
-
-	  if (typeof fn !== 'function') {
-	    return fn;
-	  }
-
-	  try {
-	    // We don't wanna wrap it twice
-	    if (fn.__sentry__) {
-	      return fn;
-	    } // If this has already been wrapped in the past, return that wrapped function
-
-
-	    if (fn.__sentry_wrapped__) {
-	      return fn.__sentry_wrapped__;
-	    }
-	  } catch (e) {
-	    // Just accessing custom props in some Selenium environments
-	    // can cause a "Permission denied" exception (see raven-js#495).
-	    // Bail on wrapping and return the function as-is (defers to window.onerror).
-	    return fn;
-	  }
-
-	  var sentryWrapped = function sentryWrapped() {
-	    var args = Array.prototype.slice.call(arguments); // tslint:disable:no-unsafe-any
-
-	    try {
-	      // tslint:disable-next-line:strict-type-predicates
-	      if (before && typeof before === 'function') {
-	        before.apply(this, arguments);
-	      }
-
-	      var wrappedArguments = args.map(function (arg) {
-	        return wrap$1(arg, options);
-	      });
-
-	      if (fn.handleEvent) {
-	        // Attempt to invoke user-land function
-	        // NOTE: If you are a Sentry user, and you are seeing this stack frame, it
-	        //       means the sentry.javascript SDK caught an error invoking your application code. This
-	        //       is expected behavior and NOT indicative of a bug with sentry.javascript.
-	        return fn.handleEvent.apply(this, wrappedArguments);
-	      } // Attempt to invoke user-land function
-	      // NOTE: If you are a Sentry user, and you are seeing this stack frame, it
-	      //       means the sentry.javascript SDK caught an error invoking your application code. This
-	      //       is expected behavior and NOT indicative of a bug with sentry.javascript.
-
-
-	      return fn.apply(this, wrappedArguments); // tslint:enable:no-unsafe-any
-	    } catch (ex) {
-	      ignoreNextOnError();
-	      withScope(function (scope) {
-	        scope.addEventProcessor(function (event) {
-	          var processedEvent = _assign({}, event);
-
-	          if (options.mechanism) {
-	            addExceptionTypeValue(processedEvent, undefined, undefined);
-	            addExceptionMechanism(processedEvent, options.mechanism);
-	          }
-
-	          processedEvent.extra = _assign({}, processedEvent.extra, {
-	            arguments: args
-	          });
-	          return processedEvent;
-	        });
-	        captureException(ex);
-	      });
-	      throw ex;
-	    }
-	  }; // Accessing some objects may throw
-	  // ref: https://github.com/getsentry/sentry-javascript/issues/1168
-
-
-	  try {
-	    for (var property in fn) {
-	      if (Object.prototype.hasOwnProperty.call(fn, property)) {
-	        sentryWrapped[property] = fn[property];
-	      }
-	    }
-	  } catch (_oO) {} // tslint:disable-line:no-empty
-
-
-	  fn.prototype = fn.prototype || {};
-	  sentryWrapped.prototype = fn.prototype;
-	  Object.defineProperty(fn, '__sentry_wrapped__', {
-	    enumerable: false,
-	    value: sentryWrapped
-	  }); // Signal that this function has been wrapped/filled already
-	  // for both debugging and to prevent it to being wrapped/filled twice
-
-	  Object.defineProperties(sentryWrapped, {
-	    __sentry__: {
-	      enumerable: false,
-	      value: true
-	    },
-	    __sentry_original__: {
-	      enumerable: false,
-	      value: fn
-	    }
-	  }); // Restore original function name (not all browsers allow that)
-
-	  try {
-	    var descriptor = Object.getOwnPropertyDescriptor(sentryWrapped, 'name');
-
-	    if (descriptor.configurable) {
-	      Object.defineProperty(sentryWrapped, 'name', {
-	        get: function get() {
-	          return fn.name;
-	        }
-	      });
-	    }
-	  } catch (_oO) {
-	    /*no-empty*/
-	  }
-
-	  return sentryWrapped;
-	}
 
 	/** Global handlers */
 
@@ -12893,99 +10633,9 @@ typeof navigator === "object" && (function () {
 	  };
 	  /** JSDoc */
 
-
-	  GlobalHandlers.prototype._installGlobalOnErrorHandler = function () {
-	    var _this = this;
-
-	    if (this._onErrorHandlerInstalled) {
-	      return;
-	    }
-
-	    addInstrumentationHandler({
-	      callback: function callback(data) {
-	        var error = data.error;
-	        var currentHub = getCurrentHub();
-	        var hasIntegration = currentHub.getIntegration(GlobalHandlers);
-	        var isFailedOwnDelivery = error && error.__sentry_own_request__ === true;
-
-	        if (!hasIntegration || shouldIgnoreOnError() || isFailedOwnDelivery) {
-	          return;
-	        }
-
-	        var client = currentHub.getClient();
-	        var event = isPrimitive(error) ? _this._eventFromIncompleteOnError(data.msg, data.url, data.line, data.column) : _this._enhanceEventWithInitialFrame(eventFromUnknownInput(error, undefined, {
-	          attachStacktrace: client && client.getOptions().attachStacktrace,
-	          rejection: false
-	        }), data.url, data.line, data.column);
-	        addExceptionMechanism(event, {
-	          handled: false,
-	          type: 'onerror'
-	        });
-	        currentHub.captureEvent(event, {
-	          originalException: error
-	        });
-	      },
-	      type: 'error'
-	    });
-	    this._onErrorHandlerInstalled = true;
-	  };
 	  /** JSDoc */
 
 
-	  GlobalHandlers.prototype._installGlobalOnUnhandledRejectionHandler = function () {
-	    var _this = this;
-
-	    if (this._onUnhandledRejectionHandlerInstalled) {
-	      return;
-	    }
-
-	    addInstrumentationHandler({
-	      callback: function callback(e) {
-	        var error = e; // dig the object of the rejection out of known event types
-
-	        try {
-	          // PromiseRejectionEvents store the object of the rejection under 'reason'
-	          // see https://developer.mozilla.org/en-US/docs/Web/API/PromiseRejectionEvent
-	          if ('reason' in e) {
-	            error = e.reason;
-	          } // something, somewhere, (likely a browser extension) effectively casts PromiseRejectionEvents
-	          // to CustomEvents, moving the `promise` and `reason` attributes of the PRE into
-	          // the CustomEvent's `detail` attribute, since they're not part of CustomEvent's spec
-	          // see https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent and
-	          // https://github.com/getsentry/sentry-javascript/issues/2380
-	          else if ('detail' in e && 'reason' in e.detail) {
-	              error = e.detail.reason;
-	            }
-	        } catch (_oO) {// no-empty
-	        }
-
-	        var currentHub = getCurrentHub();
-	        var hasIntegration = currentHub.getIntegration(GlobalHandlers);
-	        var isFailedOwnDelivery = error && error.__sentry_own_request__ === true;
-
-	        if (!hasIntegration || shouldIgnoreOnError() || isFailedOwnDelivery) {
-	          return true;
-	        }
-
-	        var client = currentHub.getClient();
-	        var event = isPrimitive(error) ? _this._eventFromIncompleteRejection(error) : eventFromUnknownInput(error, undefined, {
-	          attachStacktrace: client && client.getOptions().attachStacktrace,
-	          rejection: true
-	        });
-	        event.level = Severity.Error;
-	        addExceptionMechanism(event, {
-	          handled: false,
-	          type: 'onunhandledrejection'
-	        });
-	        currentHub.captureEvent(event, {
-	          originalException: error
-	        });
-	        return;
-	      },
-	      type: 'unhandledrejection'
-	    });
-	    this._onUnhandledRejectionHandlerInstalled = true;
-	  };
 	  /**
 	   * This function creates a stack from an old, error-less onerror handler.
 	   */
@@ -13123,100 +10773,8 @@ typeof navigator === "object" && (function () {
 	  /** JSDoc */
 
 
-	  TryCatch.prototype._wrapEventTarget = function (target) {
-	    var global = getGlobalObject();
-	    var proto = global[target] && global[target].prototype;
-
-	    if (!proto || !proto.hasOwnProperty || !proto.hasOwnProperty('addEventListener')) {
-	      return;
-	    }
-
-	    fill(proto, 'addEventListener', function (original) {
-	      return function (eventName, fn, options) {
-	        try {
-	          // tslint:disable-next-line:no-unbound-method strict-type-predicates
-	          if (typeof fn.handleEvent === 'function') {
-	            fn.handleEvent = wrap$1(fn.handleEvent.bind(fn), {
-	              mechanism: {
-	                data: {
-	                  function: 'handleEvent',
-	                  handler: getFunctionName(fn),
-	                  target: target
-	                },
-	                handled: true,
-	                type: 'instrument'
-	              }
-	            });
-	          }
-	        } catch (err) {// can sometimes get 'Permission denied to access property "handle Event'
-	        }
-
-	        return original.call(this, eventName, wrap$1(fn, {
-	          mechanism: {
-	            data: {
-	              function: 'addEventListener',
-	              handler: getFunctionName(fn),
-	              target: target
-	            },
-	            handled: true,
-	            type: 'instrument'
-	          }
-	        }), options);
-	      };
-	    });
-	    fill(proto, 'removeEventListener', function (original) {
-	      return function (eventName, fn, options) {
-	        var callback = fn;
-
-	        try {
-	          callback = callback && (callback.__sentry_wrapped__ || callback);
-	        } catch (e) {// ignore, accessing __sentry_wrapped__ will throw in some Selenium environments
-	        }
-
-	        return original.call(this, eventName, callback, options);
-	      };
-	    });
-	  };
 	  /** JSDoc */
 
-
-	  TryCatch.prototype._wrapXHR = function (originalSend) {
-	    return function () {
-	      var args = [];
-
-	      for (var _i = 0; _i < arguments.length; _i++) {
-	        args[_i] = arguments[_i];
-	      }
-
-	      var xhr = this; // tslint:disable-line:no-this-assignment
-
-	      var xmlHttpRequestProps = ['onload', 'onerror', 'onprogress', 'onreadystatechange'];
-	      xmlHttpRequestProps.forEach(function (prop) {
-	        if (prop in xhr && typeof xhr[prop] === 'function') {
-	          fill(xhr, prop, function (original) {
-	            var wrapOptions = {
-	              mechanism: {
-	                data: {
-	                  function: prop,
-	                  handler: getFunctionName(original)
-	                },
-	                handled: true,
-	                type: 'instrument'
-	              }
-	            }; // If Instrument integration has been called before TryCatch, get the name of original function
-
-	            if (original.__sentry_original__) {
-	              wrapOptions.mechanism.data.handler = getFunctionName(original.__sentry_original__);
-	            } // Otherwise wrap directly
-
-
-	            return wrap$1(original, wrapOptions);
-	          });
-	        }
-	      });
-	      return originalSend.apply(this, args);
-	    };
-	  };
 	  /**
 	   * Wrap timer functions and event targets to catch errors
 	   * and provide better metadata.
@@ -13331,78 +10889,10 @@ typeof navigator === "object" && (function () {
 	   * Creates breadcrumbs from XHR API calls
 	   */
 
-
-	  Breadcrumbs.prototype._xhrBreadcrumb = function (handlerData) {
-	    if (handlerData.endTimestamp) {
-	      // We only capture complete, non-sentry requests
-	      if (handlerData.xhr.__sentry_own_request__) {
-	        return;
-	      }
-
-	      getCurrentHub().addBreadcrumb({
-	        category: 'xhr',
-	        data: handlerData.xhr.__sentry_xhr__,
-	        type: 'http'
-	      }, {
-	        xhr: handlerData.xhr
-	      });
-	      return;
-	    } // We only capture issued sentry requests
-
-
-	    if (this._options.sentry && handlerData.xhr.__sentry_own_request__) {
-	      addSentryBreadcrumb(handlerData.args[0]);
-	    }
-	  };
 	  /**
 	   * Creates breadcrumbs from fetch API calls
 	   */
 
-
-	  Breadcrumbs.prototype._fetchBreadcrumb = function (handlerData) {
-	    // We only capture complete fetch requests
-	    if (!handlerData.endTimestamp) {
-	      return;
-	    }
-
-	    var client = getCurrentHub().getClient();
-	    var dsn = client && client.getDsn();
-
-	    if (this._options.sentry && dsn) {
-	      var filterUrl = new API(dsn).getStoreEndpoint(); // if Sentry key appears in URL, don't capture it as a request
-	      // but rather as our own 'sentry' type breadcrumb
-
-	      if (filterUrl && handlerData.fetchData.url.indexOf(filterUrl) !== -1 && handlerData.fetchData.method === 'POST' && handlerData.args[1] && handlerData.args[1].body) {
-	        addSentryBreadcrumb(handlerData.args[1].body);
-	        return;
-	      }
-	    }
-
-	    if (handlerData.error) {
-	      getCurrentHub().addBreadcrumb({
-	        category: 'fetch',
-	        data: _assign({}, handlerData.fetchData, {
-	          status_code: handlerData.response.status
-	        }),
-	        level: Severity.Error,
-	        type: 'http'
-	      }, {
-	        data: handlerData.error,
-	        input: handlerData.args
-	      });
-	    } else {
-	      getCurrentHub().addBreadcrumb({
-	        category: 'fetch',
-	        data: _assign({}, handlerData.fetchData, {
-	          status_code: handlerData.response.status
-	        }),
-	        type: 'http'
-	      }, {
-	        input: handlerData.args,
-	        response: handlerData.response
-	      });
-	    }
-	  };
 	  /**
 	   * Creates breadcrumbs from history API calls
 	   */
@@ -13540,22 +11030,6 @@ typeof navigator === "object" && (function () {
 	 * Create a breadcrumb of `namasteybharat.github` from the events themselves
 	 */
 
-	function addSentryBreadcrumb(serializedData) {
-	  // There's always something that can go wrong with deserialization...
-	  try {
-	    var event_1 = JSON.parse(serializedData);
-	    getCurrentHub().addBreadcrumb({
-	      category: "namasteybharat.github." + (event_1.type === 'transaction' ? 'transaction' : 'event'),
-	      event_id: event_1.event_id,
-	      level: event_1.level || Severity.fromString('error'),
-	      message: getEventDescription(event_1)
-	    }, {
-	      event: event_1
-	    });
-	  } catch (_oO) {
-	    logger.error('Error while adding sentry type breadcrumb');
-	  }
-	}
 
 	var DEFAULT_KEY = 'cause';
 	var DEFAULT_LIMIT = 5;
@@ -13684,7 +11158,6 @@ typeof navigator === "object" && (function () {
 	  return UserAgent;
 	}();
 
-	var defaultIntegrations = [new InboundFilters(), new FunctionToString(), new TryCatch(), new Breadcrumbs(), new GlobalHandlers(), new LinkedErrors(), new UserAgent()];
 	/**
 	 * The Sentry Browser SDK Client.
 	 *
@@ -13742,26 +11215,6 @@ typeof navigator === "object" && (function () {
 	 *
 	 * @see {@link BrowserOptions} for documentation on configuration options.
 	 */
-
-	function init(options) {
-	  if (options === void 0) {
-	    options = {};
-	  }
-
-	  if (options.defaultIntegrations === undefined) {
-	    options.defaultIntegrations = defaultIntegrations;
-	  }
-
-	  if (options.release === undefined) {
-	    var window_1 = getGlobalObject(); // This supports the variable that sentry-webpack-plugin injects
-
-	    if (window_1.SENTRY_RELEASE && window_1.SENTRY_RELEASE.id) {
-	      options.release = window_1.SENTRY_RELEASE.id;
-	    }
-	  }
-
-	  initAndBind(BrowserClient, options);
-	}
 
 	var $find$1 = arrayIteration.find;
 
@@ -29423,16 +26876,6 @@ typeof navigator === "object" && (function () {
 	};
 
 	(function () {
-	  var production = 'namasteybharat.github.io'; // Sentry for demo site (https://plyr.io) only
-
-	  if (window.location.host === production) {
-	    init({
-	      dsn: 'https://d4ad9866ad834437a4754e23937071e4@namasteybharat.github.io/305555',
-	      whitelistUrls: [production].map(function (d) {
-	        return new RegExp("https://(([a-z0-9])+(.))*".concat(d));
-	      })
-	    });
-	  }
 
 	  document.addEventListener('DOMContentLoaded', function () {
 	    var selector = '#player'; // Setup share buttons
@@ -29440,7 +26883,7 @@ typeof navigator === "object" && (function () {
 	     // Setup the player
 
 	    var player = new Plyr(selector, {
-	      debug: true,
+	      debug: false,
 	      title: 'NamasteyBharat.github.io',
 	      iconUrl: '/assets/images/icons.svg',
 	      keyboard: {
@@ -29452,94 +26895,26 @@ typeof navigator === "object" && (function () {
 	      captions: {
 	        active: true
 	      },
-	      ads: {
-	        disabled: window.location.host.includes(production),
-	        publisherId: '91ph8488hk995j4l'
-	      },
 	      previewThumbnails: {
 	        enabled: true,
 	        src: ['https://namasteybharat.github.io/assets/images/100p.vtt', 'https://namasteybharat.github.io/assets/images/240p.vtt']
 	      },
-	      vimeo: {
-	        // Prevent Vimeo blocking plyr.io demo site
-	        referrerPolicy: 'no-referrer'
-	      }
 	    }); // Expose for tinkering in the console
 
 	    window.player = player; // Setup type toggle
 
 	    var buttons = document.querySelectorAll('[data-source]');
-	    var types = Object.keys(sources);
+	
 	    var historySupport = Boolean(window.history && window.history.pushState);
 	    var currentType = window.location.hash.substring(1);
 	    var hasInitialType = currentType.length;
+ // Set a new source
 
-	    function render(type) {
-	      // Remove active classes
-	      Array.from(buttons).forEach(function (button) {
-	        return toggleClass$1(button.parentElement, 'active', false);
-	      }); // Set active on parent
+ // Bind to each button
 
-	      toggleClass$1(document.querySelector("[data-source=\"".concat(type, "\"]")), 'active', true); // Show cite
+ // List for backwards/forwards
 
-	      Array.from(document.querySelectorAll('.plyr__cite')).forEach(function (cite) {
-	        // eslint-disable-next-line no-param-reassign
-	        cite.hidden = true;
-	      });
-	     
-	    } // Set a new source
-
-
-	    function setSource(type, init) {
-	      // Bail if new type isn't known, it's the current type, or current type is empty (video is default) and new type is video
-	      if (!types.includes(type) || !init && type === currentType || !currentType.length && type === 'video') {
-	        return;
-	      } // Set the new source
-
-
-	      player.source = sources[type]; // Set the current type for next time
-
-	      currentType = type;
-	      render(type);
-	    } // Bind to each button
-
-
-	    Array.from(buttons).forEach(function (button) {
-	      button.addEventListener('click', function () {
-	        var type = button.getAttribute('data-source');
-	        setSource(type);
-
-	        if (historySupport) {
-	          window.history.pushState({
-	            type: type
-	          }, '', "#".concat(type));
-	        }
-	      });
-	    }); // List for backwards/forwards
-
-	    window.addEventListener('popstate', function (event) {
-	      if (event.state && Object.keys(event.state).includes('type')) {
-	        setSource(event.state.type);
-	      }
-	    }); // If there's no current type set, assume video
-
-	    if (!hasInitialType) {
-	      currentType = 'video';
-	    } // Replace current history state
-
-
-	    if (historySupport && types.includes(currentType)) {
-	      window.history.replaceState({
-	        type: currentType
-	      }, '', hasInitialType ? "#".concat(currentType) : '');
-	    } // If it's not video, load the source
-
-
-	    if (currentType !== 'video') {
-	      setSource(currentType, true);
-	    }
-
-	    render(currentType);
+	 
 	  });
 	})();
 

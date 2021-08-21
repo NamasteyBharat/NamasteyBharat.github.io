@@ -19324,8 +19324,12 @@ typeof navigator === "object" && (function () {
 	      case 'play-large':
 	        attributes.class += " ".concat(this.config.classNames.control, "--overlaid");
 	        type = 'play';
+	       
+	         props.toggle = true;
 	        props.label = 'play';
+	        props.labelPressed = 'pause';
 	        props.icon = 'play';
+	        props.iconPressed = 'pause';
 	        break;
 
 	      default:
@@ -21156,8 +21160,9 @@ typeof navigator === "object" && (function () {
 	    key: 'plyr'
 	  },
 	  // Default controls
-	  controls: [  //'download', 'play-large',// 'restart',
-	   'mute', 'volume',  'rewind',	  'play', 'fast-forward', 'progress', 'current-time', 'duration',
+	  controls: [  //'download', 
+	  // 'restart',
+	   'play-large','mute', 'volume',  'rewind',	  'play', 'fast-forward', 'progress', 'current-time', 'duration',
 	  'settings', 'fullscreen', 'pip', 'airplay' ,// 'captions'
 	  ],
 	  settings: ['captions', 'quality', 'speed'],
@@ -26895,10 +26900,7 @@ typeof navigator === "object" && (function () {
 	      captions: {
 	        active: true
 	      },
-	      previewThumbnails: {
-	        enabled: true,
-	        src: ['https://namasteybharat.github.io/assets/images/100p.vtt', 'https://namasteybharat.github.io/assets/images/240p.vtt']
-	      },
+	    
 	    }); // Expose for tinkering in the console
 
 	    window.player = player; // Setup type toggle
